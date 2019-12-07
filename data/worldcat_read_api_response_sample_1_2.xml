@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><record xmlns="http://www.loc.gov/MARC21/slim">
+    <leader>00000cam a2200000Mc 4500</leader>
+    <controlfield tag="001">839735820</controlfield>
+    <controlfield tag="008">120509s2012    enka     b    001 0 eng d</controlfield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">9780140278163</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">0140278168</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">9780713992748</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">0713992743</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="100">
+      <subfield code="a">Deutsch, David</subfield>
+      <subfield code="d">1953-</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="4" tag="245">
+      <subfield code="a">The beginning of infinity :</subfield>
+      <subfield code="b">explanations that transform the world /</subfield>
+      <subfield code="c">David Deutsch</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="260">
+      <subfield code="a">London</subfield>
+      <subfield code="b">Penguin Books</subfield>
+      <subfield code="c">2012</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="300">
+      <subfield code="a">VII, 487 Seiten</subfield>
+      <subfield code="b">Illustrationen</subfield>
+      <subfield code="c">24 cm</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="505">
+      <subfield code="a">The reach of explanations -- Closer to reality -- The spark -- Creation -- The reality of abstractions -- The jump to universality -- Artificial creativity -- A window on infinity -- Optimism -- A dream of Socrates -- The multiverse -- A physicist's history of bad philosophy -- Choices -- Why are flowers beautiful? -- The evolution of culture -- The evolution of creativity -- Unsustainable -- The beginning.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="520">
+      <subfield code="a">"A bold and all-embracing exploration of the nature and progress of knowledge from one of today's great thinkers. Throughout history, mankind has struggled to understand life's mysteries, from the mundane to the seemingly miraculous. In this important new book, David Deutsch, an award-winning pioneer in the field of quantum computation, argues that explanations have a fundamental place in the universe. They have unlimited scope and power to cause change, and the quest to improve them is the basic regulating principle not only of science but of all successful human endeavor. This stream of ever improving explanations has infinite reach, according to Deutsch: we are subject only to the laws of physics, and they impose no upper boundary to what we can eventually understand, control, and achieve. In his previous book, The Fabric of Reality, Deutsch describe the four deepest strands of existing knowledge-the theories of evolution, quantum physics, knowledge, and computation-arguing jointly they reveal a unified fabric of reality. In this new book, he applies that worldview to a wide range of issues and unsolved problems, from creativity and free will to the origin and future of the human species. Filled with startling new conclusions about human choice, optimism, scientific explanation, and the evolution of culture, The Beginning of Infinity is a groundbreaking book that will become a classic of its kind"</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Explanation.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Infinite.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Physics</subfield>
+      <subfield code="x">Philosophy.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Science</subfield>
+      <subfield code="x">Philosophy.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Explanation</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00918538</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Infinite</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00972421</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Physics</subfield>
+      <subfield code="x">Philosophy</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01063079</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Science</subfield>
+      <subfield code="x">Philosophy</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01108336</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="650">
+      <subfield code="a">Naturwissenschaft.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="650">
+      <subfield code="a">Philosophie.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="650">
+      <subfield code="a">Wissenschaft.</subfield>
+    </datafield>
+  </record>

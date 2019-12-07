@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/" xmlns:oclcterms="http://purl.org/oclc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">
+    <title>OCLC Worldcat Search: DAVID DEUTSCH The Fabric of Reality PENGUIN BOOKS</title>
+    <id>http://worldcat.org/webservices/catalog/search/worldcat/opensearch?q=DAVID+DEUTSCH+The+Fabric+of+Reality+PENGUIN+BOOKS&amp;start=1&amp;count=10&amp;format=atom&amp;wskey={built-in-api-key}</id>
+    <updated>2019-12-07T10:50:23-05:00</updated>
+    <subtitle>Search results for DAVID DEUTSCH The Fabric of Reality PENGUIN BOOKS at http://worldcat.org/webservices/catalog</subtitle>
+    <opensearch:totalResults>2</opensearch:totalResults>
+    <opensearch:startIndex>1</opensearch:startIndex>
+    <opensearch:itemsPerPage>10</opensearch:itemsPerPage>
+    <opensearch:Query role="request" searchTerms="DAVID DEUTSCH The Fabric of Reality PENGUIN BOOKS" startPage="1"/>
+    <link rel="alternate" href="http://worldcat.org/webservices/catalog/search/worldcat/opensearch?q=DAVID+DEUTSCH+The+Fabric+of+Reality+PENGUIN+BOOKS&amp;start=1&amp;count=10&amp;wskey={built-in-api-key}" type="text/html"/>
+    <link rel="self" href="http://worldcat.org/webservices/catalog/search/worldcat/opensearch?q=DAVID+DEUTSCH+The+Fabric+of+Reality+PENGUIN+BOOKS&amp;start=1&amp;count=10&amp;format=atom&amp;wskey={built-in-api-key}" type="application/atom+xml"/>
+    <link rel="first" href="http://worldcat.org/webservices/catalog/search/worldcat/opensearch?q=DAVID+DEUTSCH+The+Fabric+of+Reality+PENGUIN+BOOKS&amp;start=1&amp;count=10&amp;format=atom&amp;wskey={built-in-api-key}" type="application/atom+xml"/>
+    <link rel="last" href="http://worldcat.org/webservices/catalog/search/worldcat/opensearch?q=DAVID+DEUTSCH+The+Fabric+of+Reality+PENGUIN+BOOKS&amp;start=2&amp;count=10&amp;format=atom&amp;wskey={built-in-api-key}" type="application/atom+xml"/>
+    <link rel="search" type="application/opensearchdescription+xml" href="http://worldcat.org/webservices/catalog/opensearch.description.xml"/>
+    <entry>
+        <author>
+            <name>Deutsch, David</name>
+        </author>
+        <title>The fabric of reality</title>
+        <link href="http://worldcat.org/oclc/474654314"/>
+        <id>http://worldcat.org/oclc/474654314</id>
+        <updated>2019-05-27T21:54:51Z</updated>
+        <dc:identifier>urn:ISBN:0140146903</dc:identifier>
+        <dc:identifier>urn:ISBN:9780140146905</dc:identifier>
+        <oclcterms:recordIdentifier>474654314</oclcterms:recordIdentifier>
+    </entry>
+    <entry>
+        <author>
+            <name>Deutsch, David 1953-</name>
+        </author>
+        <title>The beginning of infinity : explanations that transform the world</title>
+        <link href="http://worldcat.org/oclc/839735820"/>
+        <id>http://worldcat.org/oclc/839735820</id>
+        <updated>2018-11-15T14:24:07Z</updated>
+        <summary>"A bold and all-embracing exploration of the nature and progress of knowledge from one of today's great thinkers. Throughout history, mankind has struggled to understand life's mysteries, from the mundane to the seemingly miraculous. In this important new book, David Deutsch, an award-winning pioneer in the field of quantum computation, argues that explanations have a fundamental place in the universe. They have unlimited scope and power to cause change, and the quest to improve them is the basic regulating principle not only of science but of all successful human endeavor. This stream of ever improving explanations has infinite reach, according to Deutsch: we are subject only to the laws of physics, and they impose no upper boundary to what we can eventually understand, control, and achieve. In his previous book, The Fabric of Reality, Deutsch describe the four deepest strands of existing knowledge-the theories of evolution, quantum physics, knowledge, and computation-arguing jointly they reveal a unified fabric of reality. In this new book, he applies that worldview to a wide range of issues and unsolved problems, from creativity and free will to the origin and future of the human species. Filled with startling new conclusions about human choice, optimism, scientific explanation, and the evolution of culture, The Beginning of Infinity is a groundbreaking book that will become a classic of its kind"</summary>
+        <dc:identifier>urn:ISBN:9780140278163</dc:identifier>
+        <dc:identifier>urn:ISBN:0140278168</dc:identifier>
+        <dc:identifier>urn:ISBN:9780713992748</dc:identifier>
+        <dc:identifier>urn:ISBN:0713992743</dc:identifier>
+        <oclcterms:recordIdentifier>839735820</oclcterms:recordIdentifier>
+    </entry>
+</feed>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/" xmlns:oclcterms="http://purl.org/oclc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">
+    <title>OCLC Worldcat Search:  THE WEALTH OF INDIA A Dictionary of Indian Raw Materials and Industrial Products</title>
+    <id>http://worldcat.org/webservices/catalog/search/worldcat/opensearch?q=+THE+WEALTH+OF+INDIA+A+Dictionary+of+Indian+Raw+Materials+and+Industrial+Products&amp;start=1&amp;count=10&amp;format=atom&amp;wskey={built-in-api-key}</id>
+    <updated>2019-12-07T10:26:16-05:00</updated>
+    <subtitle>Search results for  THE WEALTH OF INDIA A Dictionary of Indian Raw Materials and Industrial Products at http://worldcat.org/webservices/catalog</subtitle>
+    <opensearch:totalResults>34</opensearch:totalResults>
+    <opensearch:startIndex>1</opensearch:startIndex>
+    <opensearch:itemsPerPage>10</opensearch:itemsPerPage>
+    <opensearch:Query role="request" searchTerms=" THE WEALTH OF INDIA A Dictionary of Indian Raw Materials and Industrial Products" startPage="1"/>
+    <link rel="alternate" href="http://worldcat.org/webservices/catalog/search/worldcat/opensearch?q=+THE+WEALTH+OF+INDIA+A+Dictionary+of+Indian+Raw+Materials+and+Industrial+Products&amp;start=1&amp;count=10&amp;wskey={built-in-api-key}" type="text/html"/>
+    <link rel="self" href="http://worldcat.org/webservices/catalog/search/worldcat/opensearch?q=+THE+WEALTH+OF+INDIA+A+Dictionary+of+Indian+Raw+Materials+and+Industrial+Products&amp;start=1&amp;count=10&amp;format=atom&amp;wskey={built-in-api-key}" type="application/atom+xml"/>
+    <link rel="first" href="http://worldcat.org/webservices/catalog/search/worldcat/opensearch?q=+THE+WEALTH+OF+INDIA+A+Dictionary+of+Indian+Raw+Materials+and+Industrial+Products&amp;start=1&amp;count=10&amp;format=atom&amp;wskey={built-in-api-key}" type="application/atom+xml"/>
+    <link rel="next" href="http://worldcat.org/webservices/catalog/search/worldcat/opensearch?q=+THE+WEALTH+OF+INDIA+A+Dictionary+of+Indian+Raw+Materials+and+Industrial+Products&amp;start=11&amp;count=10&amp;format=atom&amp;wskey={built-in-api-key}" type="application/atom+xml"/>
+    <link rel="last" href="http://worldcat.org/webservices/catalog/search/worldcat/opensearch?q=+THE+WEALTH+OF+INDIA+A+Dictionary+of+Indian+Raw+Materials+and+Industrial+Products&amp;start=34&amp;count=10&amp;format=atom&amp;wskey={built-in-api-key}" type="application/atom+xml"/>
+    <link rel="search" type="application/opensearchdescription+xml" href="http://worldcat.org/webservices/catalog/opensearch.description.xml"/>
+    <entry>
+        <author>
+            <name>Council of Scientific and Industrial Research, New Delhi, 1966.</name>
+        </author>
+        <title>Wealth of India. a dictionary of Indian raw materials and industrial products</title>
+        <link href="http://worldcat.org/oclc/794359915"/>
+        <id>http://worldcat.org/oclc/794359915</id>
+        <updated>2015-10-14T07:20:02Z</updated>
+        <oclcterms:recordIdentifier>794359915</oclcterms:recordIdentifier>
+    </entry>
+    <entry>
+        <author>
+            <name>Sastry, B. N.</name>
+        </author>
+        <title>Wealth of India. a dictionary of Indian raw materials and industrial products</title>
+        <link href="http://worldcat.org/oclc/769349526"/>
+        <id>http://worldcat.org/oclc/769349526</id>
+        <updated>2015-11-10T09:16:20Z</updated>
+        <oclcterms:recordIdentifier>769349526</oclcterms:recordIdentifier>
+    </entry>
+    <entry>
+        <author>
+            <name>Council of Scientific and Industrial Research</name>
+        </author>
+        <title>Birds</title>
+        <link href="http://worldcat.org/oclc/935525743"/>
+        <id>http://worldcat.org/oclc/935525743</id>
+        <updated>2018-05-22T09:50:11Z</updated>
+        <dc:identifier>urn:ISBN:8185038902</dc:identifier>
+        <dc:identifier>urn:ISBN:9788185038902</dc:identifier>
+        <oclcterms:recordIdentifier>935525743</oclcterms:recordIdentifier>
+    </entry>
+    <entry>
+        <author>
+            <name/>
+        </author>
+        <title>J - Q.</title>
+        <link href="http://worldcat.org/oclc/250034982"/>
+        <id>http://worldcat.org/oclc/250034982</id>
+        <updated>2017-12-04T13:07:10Z</updated>
+        <dc:identifier>urn:ISBN:8172362463</dc:identifier>
+        <dc:identifier>urn:ISBN:9788172362461</dc:identifier>
+        <oclcterms:recordIdentifier>250034982</oclcterms:recordIdentifier>
+    </entry>
+    <entry>
+        <author>
+            <name/>
+        </author>
+        <title>Livestock (including poultry).</title>
+        <link href="http://worldcat.org/oclc/251772746"/>
+        <id>http://worldcat.org/oclc/251772746</id>
+        <updated>2017-12-06T18:16:51Z</updated>
+        <oclcterms:recordIdentifier>251772746</oclcterms:recordIdentifier>
+    </entry>
+    <entry>
+        <author>
+            <name/>
+        </author>
+        <title>F - G : (with index).</title>
+        <link href="http://worldcat.org/oclc/258683861"/>
+        <id>http://worldcat.org/oclc/258683861</id>
+        <updated>2017-12-13T19:58:36Z</updated>
+        <oclcterms:recordIdentifier>258683861</oclcterms:recordIdentifier>
+    </entry>
+    <entry>
+        <author>
+            <name/>
+        </author>
+        <title>D - I.</title>
+        <link href="http://worldcat.org/oclc/249590416"/>
+        <id>http://worldcat.org/oclc/249590416</id>
+        <updated>2017-11-21T19:22:04Z</updated>
+        <dc:identifier>urn:ISBN:8172362307</dc:identifier>
+        <dc:identifier>urn:ISBN:9788172362300</dc:identifier>
+        <oclcterms:recordIdentifier>249590416</oclcterms:recordIdentifier>
+    </entry>
+    <entry>
+        <author>
+            <name/>
+        </author>
+        <title>M - Pi.</title>
+        <link href="http://worldcat.org/oclc/255473091"/>
+        <id>http://worldcat.org/oclc/255473091</id>
+        <updated>2017-12-12T12:26:13Z</updated>
+        <oclcterms:recordIdentifier>255473091</oclcterms:recordIdentifier>
+    </entry>
+    <entry>
+        <author>
+            <name/>
+        </author>
+        <title>[A - B].</title>
+        <link href="http://worldcat.org/oclc/251315268"/>
+        <id>http://worldcat.org/oclc/251315268</id>
+        <updated>2017-12-05T13:39:30Z</updated>
+        <oclcterms:recordIdentifier>251315268</oclcterms:recordIdentifier>
+    </entry>
+    <entry>
+        <author>
+            <name/>
+        </author>
+        <title>D - E.</title>
+        <link href="http://worldcat.org/oclc/255473240"/>
+        <id>http://worldcat.org/oclc/255473240</id>
+        <updated>2017-11-29T16:06:02Z</updated>
+        <oclcterms:recordIdentifier>255473240</oclcterms:recordIdentifier>
+    </entry>
+</feed>

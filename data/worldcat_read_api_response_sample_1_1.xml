@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><record xmlns="http://www.loc.gov/MARC21/slim">
+    <leader>00000cam a2200000Mc 4500</leader>
+    <controlfield tag="001">474654314</controlfield>
+    <controlfield tag="008">140324s1998    uik           000 0 eng d</controlfield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">0140146903</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">9780140146905</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="100">
+      <subfield code="a">Deutsch, David</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="4" tag="245">
+      <subfield code="a">The fabric of reality /</subfield>
+      <subfield code="c">David Deutsch</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="260">
+      <subfield code="a">London :</subfield>
+      <subfield code="b">Penguin Books,</subfield>
+      <subfield code="c">1998</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="300">
+      <subfield code="a">x, 390 sider</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="505">
+      <subfield code="a">Indhold: The theory of everything ; Shadows ; Problem-solving ; Criteria for reality ; Virtual reality ; Universality and the limits of computation ; A conversation about justification ; The significance of life ; Quantum computers ; The nature of mathematics ; Time : the first quantum concept ; Time travel ; The four stands ; The ends of the universe</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="650">
+      <subfield code="a">videnskabsteori</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="650">
+      <subfield code="a">videnskabsfilosofi</subfield>
+    </datafield>
+  </record>
