@@ -7,3 +7,6 @@ IMAGE_PATH = ['../data/sample_1.png',
 
 WORLDCAT_READ_API_RESPONSE_PATH = ['../data/worldcat_read_api_response_sample_1_1.xml',
                                    '../data/worldcat_read_api_response_sample_1_2.xml']
+
+WORLDCAT_SESRCH_API_RESPONSE_PATH = ['../data/worldcat_open_search_api_response_sample_1.xml',
+                                     '../data/worldcat_open_search_api_response_sample_2.xml']
