@@ -7,7 +7,11 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = config.GOOGLE_APPLICATION_CREDENT
 
 
 def detect_text(path):
-    """Detects text in the file."""
+    '''Detects and returns texts in image.
+
+    :param path: string
+    :return: string
+    '''
     client = vision.ImageAnnotatorClient()
 
     with io.open(path, 'rb') as image_file:
@@ -20,13 +24,17 @@ def detect_text(path):
 
     # print_bounding_poly_vertices(texts)
 
-
     search_query = return_search_query(texts)
 
     return search_query
 
 
 def print_bounding_poly_vertices(texts):
+    '''Print bounding polygon vertices.
+
+    :param texts: response from vision API
+    :return: None
+    '''
     for text in texts:
         print('\n"{}"'.format(text.description))
 
@@ -37,6 +45,11 @@ def print_bounding_poly_vertices(texts):
 
 
 def return_search_query(texts):
+    '''Concatenate texts found in image.
+
+    :param texts: response.text_annotations from google vision API
+    :return: string
+    '''
     results = []
     for text in texts[1:]:
         results.append(text.description)
