@@ -1,12 +1,15 @@
 import xml.etree.ElementTree as ET
 
+
 def parse(path):
+    '''Parse and print individual MARC record retrieved by WorldCat Read API.
+
+    :param path: path to XML
+    :return: None
+    '''
 
     tree = ET.parse(path)
     root = tree.getroot()
-
-    # print(root.tag)
-    # print(root.attrib)
 
     for child in root:
         # print(child.tag, child.attrib)
@@ -33,6 +36,11 @@ def parse(path):
 
 
 def get_record_identifiers(path):
+    '''Retrieve record identifiers from WorldCat Open Search API result.
+
+    :param path: string, path to XML
+    :return: dict, list (containing record identifiers)
+    '''
     tree = ET.parse(path)
     root = tree.getroot()
 
@@ -43,11 +51,9 @@ def get_record_identifiers(path):
         try:
             for entry in child:
                 if entry.tag == '{http://www.w3.org/2005/Atom}title':
-                    # print('Title: ' + entry.text)
                     title = entry.text
                     title_list.append(title)
                 if entry.tag == '{http://purl.org/oclc/terms/}recordIdentifier':
-                    # print('Record Identifire: ' + entry.text)
                     record_identifier = entry.text
                     record_identifier_list.append(record_identifier)
             for index in range(len(title_list)):
