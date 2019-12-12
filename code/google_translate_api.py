@@ -6,6 +6,11 @@ from google.cloud import translate_v2 as translate
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = config.GOOGLE_APPLICATION_CREDENTIALS_PATH
 
 def translate_text(text):
+    '''Translate text to english.
+
+    :param text: string
+    :return: string
+    '''
     translate_client = translate.Client()
 
     if isinstance(text, six.binary_type):
