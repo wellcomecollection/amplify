@@ -1,4 +1,5 @@
 GOOGLE_APPLICATION_CREDENTIALS_PATH = "/Users/balazs/Documents/wellcome-amplify-7053884cb4d5.json"
+WORLDCAT_WSKEY = 'cNs4qsGP09f58rs6MxoMwnJVRdZPRX1jc2pn8faRUTzaIATlCRfUdU5XtYYQwqtdDnahUGryoyVG0BpZ'
 
 # Sample images in order of increasing complexity
 IMAGE_PATH = ['../data/sample_1.png',
