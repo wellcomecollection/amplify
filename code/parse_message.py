@@ -1,15 +1,19 @@
 import xml.etree.ElementTree as ET
 
 
-def parse(path):
+def parse(data, from_file=False):
     '''Parse and print individual MARC record retrieved by WorldCat Read API.
 
-    :param path: path to XML
+    :param data: string, XML or path to XML
+    :param from_file: boolean
     :return: None
     '''
 
-    tree = ET.parse(path)
-    root = tree.getroot()
+    if from_file:
+        tree = ET.parse(data)
+        root = tree.getroot()
+    else:
+        root = ET.fromstring(data)
 
     for child in root:
         # print(child.tag, child.attrib)
@@ -20,8 +24,10 @@ def parse(path):
                     code = subchild.get('code')
                     if code == 'a':
                         print('Title: ' + subchild.text)
+                        title = subchild.text
                     elif code == 'c':
                         print('Author: ' + subchild.text)
+                        author = subchild.text
             elif tag == '264' or tag == '260':
                 for subchild in child:
                     code = subchild.get('code')
@@ -29,20 +35,26 @@ def parse(path):
                         print('Location: ' + subchild.text)
                     elif code == 'b':
                         print('Publisher: ' + subchild.text)
+                        publisher = subchild.text
                     elif code == 'c':
                         print('Publication Date: ' + subchild.text)
         except:
             pass
+    return author, title, publisher
 
 
-def get_record_identifiers(path):
+def get_record_identifiers(data, from_file=False):
     '''Retrieve record identifiers from WorldCat Open Search API result.
 
-    :param path: string, path to XML
+    :param data: string, XML or path to XML
+    :param from_file: boolean
     :return: dict, list (containing record identifiers)
     '''
-    tree = ET.parse(path)
-    root = tree.getroot()
+    if from_file:
+        tree = ET.parse(data)
+        root = tree.getroot()
+    else:
+        root = ET.fromstring(data)
 
     record_identifier_list = []
     title_list = []
@@ -62,3 +74,4 @@ def get_record_identifiers(path):
             pass
 
     return record_identifier_dict, record_identifier_list
+
