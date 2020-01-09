@@ -10,7 +10,7 @@ def detect_text(path):
     '''Detects and returns texts in image.
 
     :param path: string
-    :return: string
+    :return: string, string
     '''
     client = vision.ImageAnnotatorClient()
 
@@ -50,9 +50,11 @@ def return_search_query(texts):
     :param texts: response.text_annotations from google vision API
     :return: string
     '''
-    results = []
-    for text in texts[1:]:
-        results.append(text.description)
-    concatenated_results = " ".join(results)
+    # results = []
+    # for text in texts[1:]:
+    #     results.append(text.description)
+    # concatenated_results = " ".join(results)
+
+    concatenated_results = texts[0].description.replace("\n", ", ").strip()
 
     return concatenated_results
