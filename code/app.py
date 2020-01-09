@@ -2,15 +2,27 @@ import config
 import parse_message
 import google_vision_api
 import google_translate_api
+import google_natural_language_api
 import library_hub_api
 import worldcat_search_api
 
+
 print('Extracting text...')
 response = google_vision_api.detect_text(config.IMAGE_PATH[0])
+# response = google_vision_api.detect_text('../data/sample_5.1.png')
+# response = google_vision_api.detect_text('../data/IMG_8172.jpg')
 print(response)
 
 print('Translating text...')
 result = google_translate_api.translate_text(response)
+
+print('Analyzing text...')
+# response = u'David Deutsch, The Fabric of Reality, Penguin Books, 1997.'
+# response = u'David Deutsch, The Beginning of Infinity, Viking Publishing House, 2011'
+response_ne = google_natural_language_api.analyze_entities(response)
+author, title, date, publisher, meta_data = google_natural_language_api.retrieve_entities(response_ne)
+print('Author: {}, Title: {}, Publisher: {}, Date: {}'.format(author, title, publisher, date))
+print('Meta data related to search: {}'.format(meta_data))
 
 print('Running Open Search on WorldCat...')
 response = worldcat_search_api.open_search(response)
@@ -26,9 +38,8 @@ response = worldcat_search_api.read(record_identifier_list[0])
 print('Parse MARC record...')
 # parse_message.parse(config.WORLDCAT_READ_API_RESPONSE_PATH[0], from_file=True)
 author, title, publisher = parse_message.parse(response)
-#
+
 print('Searching for duplicates in Library Hub ...')
-# response = library_hub_api.search_record(author='david deutsch', title='the fabric of reality', publisher='penguin books')
 response = library_hub_api.search_record(author=author, title=title, publisher=publisher)
 
 print(response.json()['records'][0]['bibliographic_data'])
