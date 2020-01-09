@@ -53,7 +53,9 @@ def checking_for_duplicates_at_wellcome(response, record_index=0):
             'institution_id']
         if institution_id == 'wel':
             print('Book is in Wellcome Library!')
-    return True
+            return True
+        else:
+            return False
 
 
 # Sample record from Library Hub::
