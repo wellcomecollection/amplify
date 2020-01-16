@@ -47,7 +47,7 @@ def retrieve_entities(response):
     :param response: google natural language api analyze_entities
     :return:
     '''
-    author, title, date, publisher = [], [], [], []
+    author, title, date, publisher, publisher_place = [], [], [], [], []
     meta_data = {}
     for entity in response.entities:
         entity_type = enums.Entity.Type(entity.type).name
@@ -60,8 +60,11 @@ def retrieve_entities(response):
         elif entity_type == 'ORGANIZATION':
             publisher.append(entity.name)
             meta_data[entity.name] = get_meta_data(entity)
+        elif entity_type == 'LOCATION':
+            publisher_place.append(entity.name)
+            meta_data[entity.name] = get_meta_data(entity)
         elif entity_type == 'DATE':
             date.append(entity.name)
             meta_data[entity.name] = get_meta_data(entity)
 
-    return author, title, date, publisher, meta_data
+    return author, title, date, publisher, publisher_place, meta_data
