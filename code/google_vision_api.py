@@ -6,7 +6,7 @@ from google.cloud import vision
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = config.GOOGLE_APPLICATION_CREDENTIALS_PATH
 
 
-def detect_text(path):
+def detect_text(image_file, from_path=True):
     '''Detects and returns texts in image.
 
     :param path: string
@@ -14,7 +14,10 @@ def detect_text(path):
     '''
     client = vision.ImageAnnotatorClient()
 
-    with io.open(path, 'rb') as image_file:
+    if from_path:
+        with io.open(image_file, 'rb') as image_file:
+            content = image_file.read()
+    else:
         content = image_file.read()
 
     image = vision.types.Image(content=content)
