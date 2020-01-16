@@ -58,6 +58,32 @@ def checking_for_duplicates_at_wellcome(response, record_index=0):
             return False
 
 
+def show_results(response):
+    print(response.json()['records'][0]['bibliographic_data'])
+    try:
+        print('Author: ' + response.json()['records'][0]['bibliographic_data']['author'][0])
+    except:
+        print('No author found.')
+    try:
+        print('Title: ' + response.json()['records'][0]['bibliographic_data']['title'][0])
+    except:
+        print('No title found.')
+    try:
+        print('Publication details: ' + response.json()['records'][0]['bibliographic_data']['publication_details'][0])
+    except:
+        print('No publication details found.')
+    try:
+        print('Institution ID: ' + response.json()['records'][0]['holdings'][0]['held_at'][0]['institution'][
+        'institution_id'])
+    except:
+        print('No institution ID found.')
+    if checking_for_duplicates_at_wellcome(response, record_index=0) == True:
+        print('Record is held by Wellcome!')
+        return ('Record is held by Wellcome!')
+    else:
+        print('Record is not held by Wellcome!')
+        return ('Record is not held by Wellcome!')
+
 # Sample record from Library Hub::
 
 # {'bibliographic_data': {'author': ['Deutsch, David.'],
