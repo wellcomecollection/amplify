@@ -9,6 +9,10 @@ def parse(data, from_file=False):
     :return: None
     '''
 
+    author = ''
+    title = ''
+    publisher = ''
+
     if from_file:
         tree = ET.parse(data)
         root = tree.getroot()
