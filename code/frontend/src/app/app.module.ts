@@ -8,6 +8,7 @@ import { BackendApiService } from './backend-api.service';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {MatInputModule} from '@angular/material/input';
+import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { MatSliderModule } from '@angular/material/slider';
@@ -25,9 +26,10 @@ import { WorldcatListComponent } from './worldcat-list/worldcat-list.component';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatTableModule,
     // DemoMaterialModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
   ],
   bootstrap: [AppComponent],
   providers: [BackendApiService]
