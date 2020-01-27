@@ -11,10 +11,12 @@ import {MatInputModule} from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { MatSliderModule } from '@angular/material/slider';
+import { WorldcatListComponent } from './worldcat-list/worldcat-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WorldcatListComponent
   ],
   imports: [
     BrowserModule,
