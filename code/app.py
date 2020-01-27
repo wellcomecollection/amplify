@@ -23,9 +23,12 @@ def get_vision():
     google_vision_api_response = google_vision_api.detect_text('frontend/src/' + img_loc)
     print('Translating text...')
     google_translate_api_response = google_translate_api.translate_text(google_vision_api_response)
+
     print('Analyzing text...')
-    google_natural_language_api_response = google_natural_language_api.analyze_entities(google_vision_api_response)
+    google_natural_language_api_response = google_natural_language_api.analyze_entities(google_translate_api_response['translatedText'])
     author, title, date, publisher, publisher_place, meta_data = google_natural_language_api.retrieve_entities(google_natural_language_api_response)
+    # except:
+    #     author, title, date, publisher, publisher_place, meta_data = None, None, None, None, None, None
     print('Running Open Search on WorldCat...')
     worldcat_search_api_open_search_response = worldcat_search_api.open_search(google_vision_api_response)
     print('Retrieving record identifiers from WorldCat Open Search response...')
@@ -60,6 +63,55 @@ def get_vision():
                     'worldcat_publisher': worldcat_publisher,
                     'library_hub_api_response': library_hub_api_response})
 
+
+# app.config['CORS_HEADERS'] = "Content-Type"
+# app.config['CORS_HEADERS'] = "'Access-Control-Allow-Origin', '*', 'Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'"
+
+@app.route('/post_vision', methods=["POST"])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+def post_vision():
+    print('Starting...')
+    # image_file = request.get_json()['image_input']
+    # img_loc = 'fg'
+    # print('Extracting text...')
+    # google_vision_api_response = google_vision_api.detect_text(image_file, from_path=False)
+    # print('Translating text...')
+    # google_translate_api_response = google_translate_api.translate_text(google_vision_api_response)
+    # print('Analyzing text...')
+    # google_natural_language_api_response = google_natural_language_api.analyze_entities(google_vision_api_response)
+    # author, title, date, publisher, meta_data = google_natural_language_api.retrieve_entities(google_natural_language_api_response)
+    # print('Running Open Search on WorldCat...')
+    # worldcat_search_api_open_search_response = worldcat_search_api.open_search(google_vision_api_response)
+    # print('Retrieving record identifiers from WorldCat Open Search response...')
+    # record_identifier_dict, record_identifier_list = parse_message.get_record_identifiers(worldcat_search_api_open_search_response)
+    # print('Retrieving individual MARC record XML from WorldCat Read endpoint...')
+    # worldcat_search_api_read_response = worldcat_search_api.read(record_identifier_list[0])
+    # print('Parse MARC record...')
+    # worldcat_author, worldcat_title, worldcat_publisher = parse_message.parse(worldcat_search_api_read_response)
+    # print('Searching for duplicates in Library Hub...')
+    # library_hub_api_response = library_hub_api.search_record(author=worldcat_author, title=worldcat_title, publisher=worldcat_publisher)
+    # print('Author: {}, Title: {}, Publisher: {}'.format(worldcat_author, worldcat_title, worldcat_publisher))
+    # print('Showing results...')
+    # library_hub_api_response = library_hub_api.show_results(library_hub_api_response)
+    # return jsonify({'google_vision_api_response': google_vision_api_response,
+    #                 'detectedSourceLanguage': google_translate_api_response['detectedSourceLanguage'],
+    #                 'translatedText': google_translate_api_response['translatedText'],
+    #                 'img_loc': img_loc,
+    #                 'author': author,
+    #                 'title': title,
+    #                 'date': date,
+    #                 'publisher': publisher,
+    #                 'meta_data': meta_data,
+    #                 'record_identifier_dict': record_identifier_dict,
+    #                 'worldcat_author': worldcat_author,
+    #                 'worldcat_title': worldcat_title,
+    #                 'worldcat_publisher': worldcat_publisher,
+    #                 'library_hub_api_response': library_hub_api_response})
+
+    # response.headers.add("Access-Control-Allow-Origin: http://127.0.0.1:4200")
+    # response.headers.add('Access-Control-Request-Method: POST')
+    # response.headers.add("Access-Control-Request-Headers: Content-Type, Authorization")
+    # return response
 
 if __name__ == "__main__":
     app.run(port=4201)

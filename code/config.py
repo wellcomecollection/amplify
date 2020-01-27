@@ -6,6 +6,7 @@ IMAGE_PATH = ['assets/sample_1.png',
               'assets/sample_2.jpg',
               'assets/sample_3.jpg',
               'assets/sample_4.png',
+              'assets/sample_5.jpg',
               'assets/sample_5.1.png']
 
 WORLDCAT_READ_API_RESPONSE_PATH = ['../data/worldcat_read_api_response_sample_1_1.xml',
