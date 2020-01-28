@@ -25,20 +25,18 @@ def search_record(author=None, title=None, publisher=None, date=None):
     '''
     BASE_URL = 'http://indianmedicine.eldoc.ub.rug.nl/cgi/search/archive/advanced?'
 
-    # BASE_URL = 'http://indianmedicine.eldoc.ub.rug.nl/cgi/oai2?'
-
     SEARCH = 'screen=Search&' \
             'dataset=archive&' \
              '_action_search=Search&' \
             'title_merge=ALL&' \
-            'title=indian+medicine&' \
+            'title='+format_search_string(title)+'&' \
             'titleorder_merge=ALL&' \
             'titleorder=&' \
             'authors_merge=ALL&' \
-            'authors=&' \
+            'authors='+format_search_string(author)+'&' \
             'authorsorder_merge=ALL&' \
             'authorsorder=&' \
-             'date=&' \
+             'date='+format_search_string(date)+'&' \
             'description_merge=ALL&' \
             'description=&' \
             'annote_merge=ALL&' \
@@ -50,7 +48,7 @@ def search_record(author=None, title=None, publisher=None, date=None):
             'note_checked_merge=ALL&' \
              'note_checked=&' \
             'publisher_merge=ALL&' \
-            'publisher=&' \
+            'publisher='+format_search_string(publisher)+'&' \
             'identifier_referenceID_merge=ALL&' \
             'identifier_referenceID=&' \
             'satisfyall=ALL&' \
@@ -62,7 +60,7 @@ def search_record(author=None, title=None, publisher=None, date=None):
 
     return response
 
-search_record()
+search_record(author=None, title='', publisher=None, date=None)
 
 
 def show_results(response):
@@ -84,9 +82,3 @@ def show_results(response):
         'institution_id'])
     except:
         print('No institution ID found.')
-    if checking_for_duplicates_at_wellcome(response, record_index=0) == True:
-        print('Record is held by Wellcome!')
-        return ('Record is held by Wellcome!')
-    else:
-        print('Record is not held by Wellcome!')
-        return ('Record is not held by Wellcome!')
