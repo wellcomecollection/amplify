@@ -25,7 +25,7 @@ def search_record(author=None, title=None, publisher=None, date=None):
     '''
     BASE_URL = 'http://indianmedicine.eldoc.ub.rug.nl/cgi/search/archive/advanced?'
 
-    BASE_URL = 'http://indianmedicine.eldoc.ub.rug.nl/cgi/oai2?'
+    # BASE_URL = 'http://indianmedicine.eldoc.ub.rug.nl/cgi/oai2?'
 
     SEARCH = 'screen=Search&' \
             'dataset=archive&' \
@@ -56,7 +56,7 @@ def search_record(author=None, title=None, publisher=None, date=None):
             'satisfyall=ALL&' \
             'order=-date%2Fauthorsorder%2Ftitleorder'
 
-    response = requests.post(BASE_URL + SEARCH)
+    response = requests.get(BASE_URL + SEARCH)
 
     print(response.text)
 
