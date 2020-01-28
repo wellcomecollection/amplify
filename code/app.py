@@ -18,17 +18,17 @@ cors = CORS(app, resources={r"/vision": {"origins": "http://localhost:4201"}, r"
 @app.route('/vision', methods=["GET"])
 @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def get_vision():
-    img_loc = config.IMAGE_PATH[0]
+    img_loc = config.IMAGE_PATH[7]
     print('Extracting text...')
     google_vision_api_response = google_vision_api.detect_text('frontend/src/' + img_loc)
     print('Translating text...')
     google_translate_api_response = google_translate_api.translate_text(google_vision_api_response)
-
-    print('Analyzing text...')
-    google_natural_language_api_response = google_natural_language_api.analyze_entities(google_translate_api_response['translatedText'])
-    author, title, date, publisher, publisher_place, meta_data = google_natural_language_api.retrieve_entities(google_natural_language_api_response)
-    # except:
-    #     author, title, date, publisher, publisher_place, meta_data = None, None, None, None, None, None
+    try:
+        print('Analyzing text...')
+        google_natural_language_api_response = google_natural_language_api.analyze_entities(google_translate_api_response['translatedText'])
+        author, title, date, publisher, publisher_place, meta_data = google_natural_language_api.retrieve_entities(google_natural_language_api_response)
+    except:
+        author, title, date, publisher, publisher_place, meta_data = None, None, None, None, None, None
     print('Running Open Search on WorldCat...')
     worldcat_search_api_open_search_response = worldcat_search_api.open_search(google_vision_api_response)
     print('Retrieving record identifiers from WorldCat Open Search response...')
@@ -47,6 +47,8 @@ def get_vision():
         record_identifier_dict = {'No results': 'NA'}
         worldcat_author, worldcat_title, worldcat_publisher, library_hub_api_response = None, None, None, None
 
+    print('Finished!')
+
     return jsonify({'google_vision_api_response': google_vision_api_response,
                     'detectedSourceLanguage': google_translate_api_response['detectedSourceLanguage'],
                     'translatedText': google_translate_api_response['translatedText'],
@@ -63,9 +65,6 @@ def get_vision():
                     'worldcat_publisher': worldcat_publisher,
                     'library_hub_api_response': library_hub_api_response})
 
-
-# app.config['CORS_HEADERS'] = "Content-Type"
-# app.config['CORS_HEADERS'] = "'Access-Control-Allow-Origin', '*', 'Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'"
 
 @app.route('/post_vision', methods=["POST"])
 @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
