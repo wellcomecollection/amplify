@@ -62,7 +62,7 @@ def get_record_identifiers(data, from_file=False):
 
     record_identifier_list = []
     title_list = []
-    record_identifier_dict = {}
+    record_identifier_dict_list = []
     for child in root:
         try:
             for entry in child:
@@ -73,9 +73,9 @@ def get_record_identifiers(data, from_file=False):
                     record_identifier = entry.text
                     record_identifier_list.append(record_identifier)
             for index in range(len(title_list)):
-                record_identifier_dict[record_identifier_list[index]] = title_list[index]
+                record_identifier_dict_list.append({'record_identifier': record_identifier_list[index], 'title': title_list[index]})
         except:
             pass
 
-    return record_identifier_dict, record_identifier_list
+    return record_identifier_dict_list, record_identifier_list
 
