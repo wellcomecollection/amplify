@@ -364,11 +364,13 @@
     <h2>Extracting text:</h2>
     <form class="example-form">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Author" value="{{backend.google_vision_api_response}}" (input)="updateGoogleVisionAPIResponse($event)">
+        <input matInput placeholder="Extracted text" value="{{backend.google_vision_api_response}}" (input)="updateGoogleVisionAPIResponse($event)">
       </mat-form-field>
     </form>
 
-    <i class="material-icons md-96"> keyboard_arrow_down </i>
+    <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="getVisionOutputStage2()">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
 
     <h2>Detected source language:</h2>
     <p>{{backend.detectedSourceLanguage}}</p>
@@ -410,10 +412,10 @@
     <div>
       <app-worldcat-list></app-worldcat-list>
     </div>
-    <div *ngFor="let item of backend.record_identifier_dict | keyvalue">
-      <!-- Key: <b>{{item.key}}</b> 
-      Value: <b>{{item.value}}</b> -->
-    </div>
+    <!-- <div *ngFor="let item of backend.record_identifier_dict | keyvalue">
+      Key: <b>{{item.key}}</b> 
+      Value: <b>{{item.value}}</b>
+    </div> -->
     <i class="material-icons md-96"> keyboard_arrow_down </i>
     <h2>Searching for duplicates in Library Hub:</h2>
     <!-- <p>Author: David Deutsch</p>

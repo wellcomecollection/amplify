@@ -54,6 +54,22 @@ export class AppComponent implements OnInit{
     })
   }
 
+  getVisionOutputStage2() {
+    this.backendAPI.getVisionOutputStage2(this.backend)
+    .subscribe(data => {
+      this.backend.detectedSourceLanguage = data.detectedSourceLanguage;
+      this.backend.translatedText = data.translatedText;
+      this.backend.author = data.author;
+      this.backend.title = data.title;
+      this.backend.date = data.date;
+      this.backend.publisher = data.publisher;
+      this.backend.publisher_place = data.publisher_place;
+      this.backend.meta_data = data.meta_data;
+      this.backend.record_identifier_dict = data.record_identifier_dict;
+      this.backend.library_hub_api_response = data.library_hub_api_response;
+    })
+  }
+
   postVisionOutput() {
     console.log('posting...')
     // this.backendPost.image_input = image_input
@@ -66,26 +82,32 @@ export class AppComponent implements OnInit{
 
   updateGoogleVisionAPIResponse(event: any) {
     this.backend.google_vision_api_response = event.target.value;
+    console.log(this.backend.google_vision_api_response);
   }
 
   updateAuthor(event: any) {
     this.backend.author = event.target.value;
+    console.log(this.backend.author);
   }
 
   updateTitle(event: any) {
     this.backend.title = event.target.value;
+    console.log(this.backend.title);
   }
 
   updateDate(event: any) {
     this.backend.date = event.target.value;
+    console.log(this.backend.date);
   }
   
   updatePublisher(event: any) {
     this.backend.publisher = event.target.value;
+    console.log(this.backend.publisher);
   }
 
   updatePublisherPlace(event: any) {
     this.backend.publisher_place = event.target.value;
+    console.log(this.backend.publisher_place);
   }
 
   ngOnInit() {

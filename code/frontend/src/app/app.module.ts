@@ -12,6 +12,7 @@ import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { MatSliderModule } from '@angular/material/slider';
+import { MatButtonModule, MatIconModule } from '@angular/material';
 import { WorldcatListComponent } from './worldcat-list/worldcat-list.component';
 
 @NgModule({
@@ -30,6 +31,8 @@ import { WorldcatListComponent } from './worldcat-list/worldcat-list.component';
     // DemoMaterialModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    MatButtonModule,
+    MatIconModule
   ],
   bootstrap: [AppComponent],
   providers: [BackendApiService]
