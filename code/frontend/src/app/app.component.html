@@ -374,10 +374,18 @@
 
     <h2>Detected source language:</h2>
     <p>{{backend.detectedSourceLanguage}}</p>
-    <i class="material-icons md-96"> keyboard_arrow_down </i>
+    <!-- <i class="material-icons md-96"> keyboard_arrow_down </i> -->
     <h2>Translating text:</h2>
-    <p>{{backend.translatedText}}</p>
-    <i class="material-icons md-96"> keyboard_arrow_down </i>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Translated text" value="{{backend.translatedText}}" (input)="updateTranslatedText($event)">
+      </mat-form-field>
+    </form>
+
+    <button mat-icon-button aria-label="Translate" (click)="getVisionOutputStage3()">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <!-- <i class="material-icons md-96"> keyboard_arrow_down </i> -->
     <h2>Analyzing text:</h2>
     <form class="example-form">
       <mat-form-field class="example-full-width">

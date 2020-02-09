@@ -36,8 +36,8 @@ export class AppComponent implements OnInit{
     private backendAPI: BackendApiService
   ) {}
 
-  getVisionOutput() {
-    this.backendAPI.getVisionOutput()
+  getVisionOutputStage1() {
+    this.backendAPI.getVisionOutputStage1()
     .subscribe(data => {
       this.backend.google_vision_api_response = data.google_vision_api_response;
       this.backend.detectedSourceLanguage = data.detectedSourceLanguage;
@@ -70,6 +70,20 @@ export class AppComponent implements OnInit{
     })
   }
 
+  getVisionOutputStage3() {
+    this.backendAPI.getVisionOutputStage3(this.backend)
+    .subscribe(data => {
+      this.backend.author = data.author;
+      this.backend.title = data.title;
+      this.backend.date = data.date;
+      this.backend.publisher = data.publisher;
+      this.backend.publisher_place = data.publisher_place;
+      this.backend.meta_data = data.meta_data;
+      this.backend.record_identifier_dict = data.record_identifier_dict;
+      this.backend.library_hub_api_response = data.library_hub_api_response;
+    })
+  }
+
   postVisionOutput() {
     console.log('posting...')
     // this.backendPost.image_input = image_input
@@ -83,6 +97,11 @@ export class AppComponent implements OnInit{
   updateGoogleVisionAPIResponse(event: any) {
     this.backend.google_vision_api_response = event.target.value;
     console.log(this.backend.google_vision_api_response);
+  }
+
+  updateTranslatedText(event: any) {
+    this.backend.translatedText = event.target.value;
+    console.log(this.backend.translatedText);
   }
 
   updateAuthor(event: any) {
@@ -111,6 +130,6 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.getVisionOutput();
+    this.getVisionOutputStage1();
   }
 }
