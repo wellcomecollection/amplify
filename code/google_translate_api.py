@@ -20,8 +20,8 @@ def translate_text(text):
     result = translate_client.translate(
         text, target_language='en')
 
-    print(u'Text: {}'.format(result['input']))
-    print(u'Translation: {}'.format(result['translatedText']))
-    print(u'Detected source language: {}'.format(result['detectedSourceLanguage']))
+    # print(u'Text: {}'.format(result['input']))
+    # print(u'Translation: {}'.format(result['translatedText']))
+    # print(u'Detected source language: {}'.format(result['detectedSourceLanguage']))
 
     return result

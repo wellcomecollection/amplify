@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {BackendApiService} from '../backend-api.service';
-
+import { AppComponent } from '../app.component';
 
 export interface PeriodicElement {
   record_identifier: string;
   title: string;
+  // worldcat_results: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -32,11 +33,15 @@ export class WorldcatListComponent implements OnInit {
     })
   }
 
-  displayedColumns: string[] = ['record_identifier', 'title'];
+  displayedColumns: string[] = [
+    'record_identifier', 
+    'title', 
+    // 'worldcat_results'
+];
   dataSource = ELEMENT_DATA;
 
   ngOnInit() {
-    this.getVisionOutput();
+    // this.getVisionOutput();
   }
 
 }

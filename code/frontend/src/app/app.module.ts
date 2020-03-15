@@ -14,11 +14,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule, MatIconModule } from '@angular/material';
 import { WorldcatListComponent } from './worldcat-list/worldcat-list.component';
+import { WorldcatResultsComponent } from './worldcat-results/worldcat-results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WorldcatListComponent
+    WorldcatListComponent,
+    WorldcatResultsComponent
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,7 @@ const httpOptions = {
 //   })
 // };
 
-const API_URL = 'http://localhost:4201';
+const API_URL = 'http://localhost:4204';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +26,8 @@ export class BackendApiService {
   constructor(private http: HttpClient) {
   }
 
-  getVisionOutputStage1(): Observable<any> {
-    return this.http.get<any>(`${API_URL}/visionStage1`, httpOptions)
+  getVisionOutputStage1(frontPage: any): Observable<any> {
+    return this.http.post<any>(`${API_URL}/visionStage1`, frontPage)
     .pipe(timeout(86400000));
   }
 

@@ -25,7 +25,8 @@ export class AppComponent implements OnInit{
     publisher_place: [],
     meta_data: [],
     record_identifier_dict: [], 
-    library_hub_api_response: []
+    library_hub_api_response: [],
+    worldcat_results: []
   }
 
   backendPost = {
@@ -36,8 +37,25 @@ export class AppComponent implements OnInit{
     private backendAPI: BackendApiService
   ) {}
 
-  getVisionOutputStage1() {
-    this.backendAPI.getVisionOutputStage1()
+  selectedFile: File = null;
+
+  onFileSelected(event) {
+    console.log(event);
+    this.selectedFile = <File>event.target.files[0];
+  }
+
+  onUpload() {
+    const frontPage = new FormData();
+    frontPage.append(
+      'image', 
+      this.selectedFile, 
+      this.selectedFile.name
+      )
+    this.getVisionOutputStage1(frontPage);
+  }
+
+  getVisionOutputStage1(frontPage) {
+    this.backendAPI.getVisionOutputStage1(frontPage)
     .subscribe(data => {
       this.backend.google_vision_api_response = data.google_vision_api_response;
       this.backend.detectedSourceLanguage = data.detectedSourceLanguage;
@@ -51,6 +69,7 @@ export class AppComponent implements OnInit{
       this.backend.meta_data = data.meta_data;
       this.backend.record_identifier_dict = data.record_identifier_dict;
       this.backend.library_hub_api_response = data.library_hub_api_response;
+      this.backend.worldcat_results = data.worldcat_results;
     })
   }
 
@@ -130,6 +149,6 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.getVisionOutputStage1();
+    // this.getVisionOutputStage1();
   }
 }
