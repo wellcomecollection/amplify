@@ -25,18 +25,18 @@ export class WorldcatResultsComponent implements OnInit {
     record_identifier_dict: []
   }
 
-  getVisionOutput() {
-    this.backendAPI.getVisionOutputStage1()
-    .subscribe(data => {
-      this.dataSource = data.worldcat_results;
-    })
-  }
+  // getVisionOutput() {
+  //   this.backendAPI.getVisionOutputStage1()
+  //   .subscribe(data => {
+  //     this.dataSource = data.worldcat_results;
+  //   })
+  // }
 
   displayedColumns: string[] = ['tag', 'code', 'subfield'];
   dataSource = ELEMENT_DATA;
 
   ngOnInit() {
-    this.getVisionOutput();
+    // this.getVisionOutput();
   }
 
 }

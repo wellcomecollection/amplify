@@ -8,7 +8,6 @@ import {interval} from 'rxjs';
 export interface WorldcatList {
   record_identifier: string;
   title: string;
-  // worldcat_results: string;
 }
 
 const WORLDCAT_LIST: WorldcatList[] = [
@@ -35,7 +34,6 @@ export class AppComponent implements OnInit{
   displayedColumns: string[] = [
     'record_identifier', 
     'title', 
-    // 'worldcat_results'
   ];
   dataSource = WORLDCAT_LIST;
 
