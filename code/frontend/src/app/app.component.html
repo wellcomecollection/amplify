@@ -322,8 +322,6 @@
       </svg>
   
     </div>
-  
-    <!-- Resources -->
     
     <input type="file" (change)="onFileSelected($event)">
     <button type="button" (click)=onUpload()>Submit</button>
@@ -347,6 +345,7 @@
     <div *ngIf="this.selectedFile.name != Null">
       <img src='assets/{{this.selectedFile.name}}' alt="Image" width="600" height="800">
     </div>
+
     <i class="material-icons md-96"> keyboard_arrow_down </i>
 
     <h2>Extracting text:</h2>
@@ -405,15 +404,54 @@
     <p>Metadata: {{backend.metadata}}</p>
     <i class="material-icons md-96"> keyboard_arrow_down </i>
     <h2>Running Open Search on WorldCat:</h2>
-    <div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="record_identifier">
+          <th mat-header-cell *matHeaderCellDef> Record identifier </th>
+          <td mat-cell *matCellDef="let element"> {{element.record_identifier}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef> Title </th>
+          <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+        </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+    <!-- <div>
       <app-worldcat-list></app-worldcat-list>
-    </div>
+    </div> -->
 
     <i class="material-icons md-96"> keyboard_arrow_down </i>
     <h2>Showing Detailed WorldCat results:</h2>
-    <div>
+
+
+  <table mat-table [dataSource]="dataSourceWorldcatResults" class="mat-elevation-z8">
+      <ng-container matColumnDef="tag">
+          <th mat-header-cell *matHeaderCellDef> Tag </th>
+          <td mat-cell *matCellDef="let element"> {{element.tag}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef> Code </th>
+          <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="subfield">
+          <th mat-header-cell *matHeaderCellDef> Subfield </th>
+          <td mat-cell *matCellDef="let element"> {{element.subfield}} </td>
+        </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsWorldcatResults"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsWorldcatResults;"></tr>
+  </table>
+
+    <!-- <div>
       <app-worldcat-results></app-worldcat-results>
-    </div>
+    </div> -->
 
     <!-- <div *ngFor="let item of backend.record_identifier_dict | keyvalue">
       Key: <b>{{item.key}}</b> 

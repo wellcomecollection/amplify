@@ -1,6 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import {BackendApiService} from './backend-api.service';
 import { API_URL } from 'src/environments/environment';
+import {WorldcatListComponent} from './worldcat-list/worldcat-list.component';
+import {interval} from 'rxjs';
+
+
+export interface WorldcatList {
+  record_identifier: string;
+  title: string;
+  // worldcat_results: string;
+}
+
+const WORLDCAT_LIST: WorldcatList[] = [
+];
+
+export interface WorldcatResults {
+  tag: string;
+  code: string;
+  subfield: string;
+}
+
+const WORLDCAT_RESULTS: WorldcatResults[] = [
+];
 
 
 @Component({
@@ -10,8 +31,18 @@ import { API_URL } from 'src/environments/environment';
 })
 
 export class AppComponent implements OnInit{
+
+  displayedColumns: string[] = [
+    'record_identifier', 
+    'title', 
+    // 'worldcat_results'
+  ];
+  dataSource = WORLDCAT_LIST;
+
+  displayedColumnsWorldcatResults: string[] = ['tag', 'code', 'subfield'];
+  dataSourceWorldcatResults = WORLDCAT_RESULTS;
+
   title = 'frontend';
-  // author = 'hello';
 
   backend = {
     google_vision_api_response: [],
@@ -34,7 +65,7 @@ export class AppComponent implements OnInit{
   }
 
   constructor(
-    private backendAPI: BackendApiService
+    private backendAPI: BackendApiService, 
   ) {}
 
   selectedFile: File = null;
@@ -70,6 +101,8 @@ export class AppComponent implements OnInit{
       this.backend.record_identifier_dict = data.record_identifier_dict;
       this.backend.library_hub_api_response = data.library_hub_api_response;
       this.backend.worldcat_results = data.worldcat_results;
+      this.dataSource = data.record_identifier_dict;
+      this.dataSourceWorldcatResults = data.worldcat_results;
     })
   }
 
