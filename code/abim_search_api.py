@@ -1,4 +1,6 @@
 import requests
+import re
+from re import finditer
 
 
 def format_search_string(text):
@@ -7,8 +9,12 @@ def format_search_string(text):
     :param text: string
     :return: string (formatted)
     '''
+    print(text)
     if text != None:
-        text = text.lower().replace(' ', '+')
+        if text == []:
+            text = ''
+        else:
+            text = text.lower().replace(' ', '+')
     else:
         text = ''
     return text
@@ -56,29 +62,36 @@ def search_record(author=None, title=None, publisher=None, date=None):
 
     response = requests.get(BASE_URL + SEARCH)
 
-    print(response.text)
+    # print(response.text)
 
-    return response
-
-search_record(author=None, title='', publisher=None, date=None)
+    return response.text
 
 
-def show_results(response):
-    print(response.json()['records'][0]['bibliographic_data'])
-    try:
-        print('Author: ' + response.json()['records'][0]['bibliographic_data']['author'][0])
-    except:
-        print('No author found.')
-    try:
-        print('Title: ' + response.json()['records'][0]['bibliographic_data']['title'][0])
-    except:
-        print('No title found.')
-    try:
-        print('Publication details: ' + response.json()['records'][0]['bibliographic_data']['publication_details'][0])
-    except:
-        print('No publication details found.')
-    try:
-        print('Institution ID: ' + response.json()['records'][0]['holdings'][0]['held_at'][0]['institution'][
-        'institution_id'])
-    except:
-        print('No institution ID found.')
+def parse_response(response):
+    results = []
+
+    start_positions = []
+    end_positions = []
+
+    for match in finditer("""<tr class="ep_search_result">
+    <td style="padding-left: 0.5em">""", response):
+        print(match.span(), match.group())
+        start_positions.append(match.span()[1])
+
+    for match in finditer("""Publication]""", response):
+        print(match.span(), match.group())
+        end_positions.append(match.span()[0])
+
+    print(start_positions)
+    print(end_positions)
+
+    for i in range(len(start_positions)):
+        print(response[start_positions[i]:end_positions[i]-1])
+        results.append({'document': response[start_positions[i]:end_positions[i]-1]})
+
+    return results
+
+
+# response = search_record(author=None, title='the wealth of india', publisher=None, date=None)
+#
+# results = parse_response(response)

@@ -5,6 +5,7 @@ import google_translate_api
 import google_natural_language_api
 import library_hub_api
 import worldcat_search_api
+import abim_search_api
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 
@@ -19,7 +20,6 @@ cors = CORS(app, resources={r"/visionStage1": {"origins": "http://localhost:4204
 @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def get_visionStage1():
     image = request.files['image']
-    print(image)
     img_loc = config.IMAGE_PATH[0]
     print('Extracting text...')
     # google_vision_api_response = google_vision_api.detect_text('frontend/src/' + img_loc)
@@ -65,6 +65,7 @@ def get_visionStage1():
         worldcat_author, worldcat_title, worldcat_publisher, library_hub_api_response = None, None, None, None
 
     print('Finished!')
+    print(record_identifier_dict)
 
     return jsonify({'google_vision_api_response': google_vision_api_response,
                     'detectedSourceLanguage': google_translate_api_response['detectedSourceLanguage'],
@@ -82,6 +83,23 @@ def get_visionStage1():
                     'worldcat_publisher': worldcat_publisher,
                     'library_hub_api_response': library_hub_api_response,
                     'worldcat_results': worldcat_results})
+
+
+@app.route('/abim_search', methods=["POST"])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+def abim_search():
+    author = request.get_json()['author']
+    title = request.get_json()['title']
+    publisher = request.get_json()['publisher']
+    date = request.get_json()['date']
+
+    response = abim_search_api.search_record(author=author, title=title, publisher=publisher, date=date)
+
+    results = abim_search_api.parse_response(response)
+
+    print('Finished!')
+
+    return jsonify({'results': results})
 
 
 @app.route('/visionStage2', methods=["POST"])
