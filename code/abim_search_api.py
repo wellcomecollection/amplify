@@ -10,14 +10,18 @@ def format_search_string(text):
     :return: string (formatted)
     '''
     print(text)
+    result = ''
     if text != None:
         if text == []:
-            text = ''
+            result = ''
+        elif type(text) is list:
+            for piece in text:
+                piece = piece.lower().replace(' ', '+')
+                result += piece + str(' ')
         else:
-            text = text.lower().replace(' ', '+')
-    else:
-        text = ''
-    return text
+            result = text.lower().replace(' ', '+')
+    print(result)
+    return result
 
 
 def search_record(author=None, title=None, publisher=None, date=None):
@@ -60,9 +64,9 @@ def search_record(author=None, title=None, publisher=None, date=None):
             'satisfyall=ALL&' \
             'order=-date%2Fauthorsorder%2Ftitleorder'
 
-    response = requests.get(BASE_URL + SEARCH)
+    print(SEARCH)
 
-    # print(response.text)
+    response = requests.get(BASE_URL + SEARCH)
 
     return response.text
 
@@ -75,23 +79,17 @@ def parse_response(response):
 
     for match in finditer("""<tr class="ep_search_result">
     <td style="padding-left: 0.5em">""", response):
-        print(match.span(), match.group())
+        # print(match.span(), match.group())
         start_positions.append(match.span()[1])
 
     for match in finditer("""Publication]""", response):
-        print(match.span(), match.group())
+        # print(match.span(), match.group())
         end_positions.append(match.span()[0])
 
-    print(start_positions)
-    print(end_positions)
-
     for i in range(len(start_positions)):
-        print(response[start_positions[i]:end_positions[i]-1])
-        results.append({'document': response[start_positions[i]:end_positions[i]-1]})
+        document = str(response[start_positions[i]:end_positions[i]-1])
+        document = document.replace("""</td>\n    <td style="padding-left: 0.5em">\n      \n\n\n   """, '')
+        document = document.replace("""</em></a>\n\n\n""", '')
+        results.append({'document': document})
 
     return results
-
-
-# response = search_record(author=None, title='the wealth of india', publisher=None, date=None)
-#
-# results = parse_response(response)
