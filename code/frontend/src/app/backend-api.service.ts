@@ -31,6 +31,11 @@ export class BackendApiService {
     .pipe(timeout(86400000));
   }
 
+  searchABIM(ABIMSearchDict: any): Observable<any> {
+    return this.http.post<any>(`${API_URL}/abim_search`, ABIMSearchDict)
+    .pipe(timeout(86400000));
+  }
+
   getVisionOutputStage2(backendPost: any): Observable<any> {
     return this.http.post<any>(`${API_URL}/visionStage2`, backendPost, httpOptions)
     .pipe(timeout(86400000));

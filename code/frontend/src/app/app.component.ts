@@ -10,17 +10,22 @@ export interface WorldcatList {
   title: string;
 }
 
-const WORLDCAT_LIST: WorldcatList[] = [
-];
-
 export interface WorldcatResults {
   tag: string;
   code: string;
   subfield: string;
 }
 
-const WORLDCAT_RESULTS: WorldcatResults[] = [
-];
+export interface ABIM {
+  document: string;
+  // subfield: string;
+}
+
+const WORLDCAT_LIST: WorldcatList[] = [];
+
+const WORLDCAT_RESULTS: WorldcatResults[] = [];
+
+const ABIM_LIST: ABIM[] = [];
 
 
 @Component({
@@ -33,12 +38,19 @@ export class AppComponent implements OnInit{
 
   displayedColumns: string[] = [
     'record_identifier', 
-    'title', 
+    'title'];
+  displayedColumnsWorldcatResults: string[] = [
+    'tag', 
+    'code', 
+    'subfield'];
+  displayedColumnsABIM: string[] = [
+    'code', 
+    // 'subfield'
   ];
-  dataSource = WORLDCAT_LIST;
 
-  displayedColumnsWorldcatResults: string[] = ['tag', 'code', 'subfield'];
+  dataSource = WORLDCAT_LIST;
   dataSourceWorldcatResults = WORLDCAT_RESULTS;
+  dataSourceABIM = ABIM_LIST;
 
   title = 'frontend';
 
@@ -55,11 +67,23 @@ export class AppComponent implements OnInit{
     meta_data: [],
     record_identifier_dict: [], 
     library_hub_api_response: [],
-    worldcat_results: []
+    worldcat_results: [],
+    status: false
   }
 
   backendPost = {
     image_input: null
+  }
+
+  ABIMSearchDict = {
+    author: null,
+    title: null,
+    publisher: null,
+    date: null
+  }
+
+  ABIMResults = {
+    results: []
   }
 
   constructor(
@@ -74,6 +98,7 @@ export class AppComponent implements OnInit{
   }
 
   onUpload() {
+    this.backend.status = true;
     const frontPage = new FormData();
     frontPage.append(
       'image', 
@@ -100,9 +125,31 @@ export class AppComponent implements OnInit{
       this.backend.library_hub_api_response = data.library_hub_api_response;
       this.backend.worldcat_results = data.worldcat_results;
       this.dataSource = data.record_identifier_dict;
+      console.log(this.dataSource);
+      console.log(this.backend.google_vision_api_response);
+      console.log(this.backend.publisher);
+      console.log(this.backend.date);
       this.dataSourceWorldcatResults = data.worldcat_results;
+      this.backend.status = false;
     })
   }
+
+  searchABIM(event: any) {
+    this.ABIMSearchDict.author = this.backend.author,
+    this.ABIMSearchDict.title = this.backend.title,
+    this.ABIMSearchDict.publisher = this.backend.publisher,
+    this.ABIMSearchDict.date = this.backend.date,
+    this.backendAPI.searchABIM(this.ABIMSearchDict)
+    .subscribe(data => {
+      // this.ABIMResults.results = data.abim_results;
+      this.dataSourceABIM = data.abim_results;
+    // console.log(this.backend.author);
+    // console.log(this.backend.title);
+    // console.log(this.backend.publisher);
+    // console.log(this.backend.date);
+    console.log(this.dataSourceABIM);
+  })
+}
 
   getVisionOutputStage2() {
     this.backendAPI.getVisionOutputStage2(this.backend)

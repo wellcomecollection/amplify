@@ -9,6 +9,7 @@ import { BackendApiService } from './backend-api.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { MatSliderModule } from '@angular/material/slider';
@@ -30,6 +31,7 @@ import { WorldcatResultsComponent } from './worldcat-results/worldcat-results.co
     ReactiveFormsModule,
     MatInputModule,
     MatTableModule,
+    MatProgressSpinnerModule,
     // DemoMaterialModule,
     BrowserAnimationsModule,
     MatSliderModule,
