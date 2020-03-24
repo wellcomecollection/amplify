@@ -132,20 +132,8 @@ def get_visionStage2():
     print('Running Open Search on WorldCat...')
     worldcat_search_api_open_search_response = worldcat_search_api.open_search(google_vision_api_response)
     print('Retrieving record identifiers from WorldCat Open Search response...')
-    record_identifier_dict, record_identifier_list = parse_message.get_record_identifiers(worldcat_search_api_open_search_response)
+    record_identifier_dict = parse_message.get_record_identifiers(worldcat_search_api_open_search_response)
     print('Retrieving individual MARC record XML from WorldCat Read endpoint...')
-    try:
-        worldcat_search_api_read_response = worldcat_search_api.read(record_identifier_list[0])
-        print('Parse MARC record...')
-        worldcat_author, worldcat_title, worldcat_publisher = parse_message.parse(worldcat_search_api_read_response)
-        print('Searching for duplicates in Library Hub...')
-        library_hub_api_response = library_hub_api.search_record(author=worldcat_author, title=worldcat_title, publisher=worldcat_publisher)
-        print('Author: {}, Title: {}, Publisher: {}'.format(worldcat_author, worldcat_title, worldcat_publisher))
-        print('Showing results...')
-        library_hub_api_response = library_hub_api.show_results(library_hub_api_response)
-    except:
-        record_identifier_dict = {'No results': 'NA'}
-        worldcat_author, worldcat_title, worldcat_publisher, library_hub_api_response = None, None, None, None
 
     print('Finished!')
 
@@ -158,11 +146,8 @@ def get_visionStage2():
                     'publisher': publisher,
                     'publisher_place': publisher_place,
                     'meta_data': meta_data,
-                    'record_identifier_dict': record_identifier_dict,
-                    'worldcat_author': worldcat_author,
-                    'worldcat_title': worldcat_title,
-                    'worldcat_publisher': worldcat_publisher,
-                    'library_hub_api_response': library_hub_api_response})
+                    'record_identifier_dict': record_identifier_dict
+                    })
 
 
 @app.route('/visionStage3', methods=["POST"])
@@ -179,20 +164,8 @@ def get_visionStage3():
     print('Running Open Search on WorldCat...')
     worldcat_search_api_open_search_response = worldcat_search_api.open_search(google_translate_api_response)
     print('Retrieving record identifiers from WorldCat Open Search response...')
-    record_identifier_dict, record_identifier_list = parse_message.get_record_identifiers(worldcat_search_api_open_search_response)
+    record_identifier_dict = parse_message.get_record_identifiers(worldcat_search_api_open_search_response)
     print('Retrieving individual MARC record XML from WorldCat Read endpoint...')
-    try:
-        worldcat_search_api_read_response = worldcat_search_api.read(record_identifier_list[0])
-        print('Parse MARC record...')
-        worldcat_author, worldcat_title, worldcat_publisher = parse_message.parse(worldcat_search_api_read_response)
-        print('Searching for duplicates in Library Hub...')
-        library_hub_api_response = library_hub_api.search_record(author=worldcat_author, title=worldcat_title, publisher=worldcat_publisher)
-        print('Author: {}, Title: {}, Publisher: {}'.format(worldcat_author, worldcat_title, worldcat_publisher))
-        print('Showing results...')
-        library_hub_api_response = library_hub_api.show_results(library_hub_api_response)
-    except:
-        record_identifier_dict = {'No results': 'NA'}
-        worldcat_author, worldcat_title, worldcat_publisher, library_hub_api_response = None, None, None, None
 
     print('Finished!')
 
@@ -202,11 +175,8 @@ def get_visionStage3():
                     'publisher': publisher,
                     'publisher_place': publisher_place,
                     'meta_data': meta_data,
-                    'record_identifier_dict': record_identifier_dict,
-                    'worldcat_author': worldcat_author,
-                    'worldcat_title': worldcat_title,
-                    'worldcat_publisher': worldcat_publisher,
-                    'library_hub_api_response': library_hub_api_response})
+                    'record_identifier_dict': record_identifier_dict
+                    })
 
 
 if __name__ == "__main__":

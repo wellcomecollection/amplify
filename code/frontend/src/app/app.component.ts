@@ -76,7 +76,9 @@ export class AppComponent implements OnInit{
     worldcat_results: [],
     status: false,
     libraryhubstatus: false,
-    abimstatus: false
+    abimstatus: false,
+    stage2status: false,
+    stage3status: false
   }
 
   backendPost = {
@@ -174,6 +176,7 @@ export class AppComponent implements OnInit{
 }
 
   getVisionOutputStage2() {
+    this.backend.stage2status = true;
     this.backendAPI.getVisionOutputStage2(this.backend)
     .subscribe(data => {
       this.backend.detectedSourceLanguage = data.detectedSourceLanguage;
@@ -186,10 +189,12 @@ export class AppComponent implements OnInit{
       this.backend.meta_data = data.meta_data;
       this.backend.record_identifier_dict = data.record_identifier_dict;
       this.backend.library_hub_api_response = data.library_hub_api_response;
+      this.backend.stage2status = false;
     })
   }
 
   getVisionOutputStage3() {
+    this.backend.stage3status = true;
     this.backendAPI.getVisionOutputStage3(this.backend)
     .subscribe(data => {
       this.backend.author = data.author;
@@ -200,6 +205,7 @@ export class AppComponent implements OnInit{
       this.backend.meta_data = data.meta_data;
       this.backend.record_identifier_dict = data.record_identifier_dict;
       this.backend.library_hub_api_response = data.library_hub_api_response;
+      this.backend.stage3status = false;
     })
   }
 

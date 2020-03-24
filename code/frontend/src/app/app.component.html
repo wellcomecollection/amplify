@@ -364,6 +364,12 @@
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
 
+    <div *ngIf="this.backend.stage2status == true">
+      <p>
+        <mat-spinner [diameter]="70"></mat-spinner>
+      </p>
+    </div>
+
     <h2>Detected source language:</h2>
     <p>{{backend.detectedSourceLanguage}}</p>
 
@@ -377,6 +383,12 @@
     <button mat-icon-button aria-label="Translate" (click)="getVisionOutputStage3()">
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
+
+    <div *ngIf="this.backend.stage3status == true">
+      <p>
+        <mat-spinner [diameter]="70"></mat-spinner>
+      </p>
+    </div>
 
     <h2>Analyzing text:</h2>
     <form class="example-form">
