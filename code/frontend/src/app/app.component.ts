@@ -8,6 +8,7 @@ import {interval} from 'rxjs';
 export interface WorldcatList {
   record_identifier: string;
   title: string;
+  worldcat_results: string;
 }
 
 export interface WorldcatResults {
@@ -17,8 +18,10 @@ export interface WorldcatResults {
 }
 
 export interface ABIM {
-  document: string;
-  // subfield: string;
+  author: string;
+  date: string;
+  link: string;
+  title: string;
 }
 
 const WORLDCAT_LIST: WorldcatList[] = [];
@@ -38,14 +41,17 @@ export class AppComponent implements OnInit{
 
   displayedColumns: string[] = [
     'record_identifier', 
-    'title'];
+    'title',
+    'action'];
   displayedColumnsWorldcatResults: string[] = [
     'tag', 
     'code', 
     'subfield'];
   displayedColumnsABIM: string[] = [
-    'code', 
-    // 'subfield'
+    'author', 
+    'date',
+    'link',
+    'title',
   ];
 
   dataSource = WORLDCAT_LIST;
@@ -68,7 +74,9 @@ export class AppComponent implements OnInit{
     record_identifier_dict: [], 
     library_hub_api_response: [],
     worldcat_results: [],
-    status: false
+    status: false,
+    libraryhubstatus: false,
+    abimstatus: false
   }
 
   backendPost = {
@@ -108,6 +116,21 @@ export class AppComponent implements OnInit{
     this.getVisionOutputStage1(frontPage);
   }
 
+  selectRecord(worldcat_results) {
+    console.log(worldcat_results)
+    this.dataSourceWorldcatResults = worldcat_results;
+  }
+
+  libraryHubSearch() {
+    this.backend.libraryhubstatus = true;
+    this.backendAPI.libraryHubSearch(this.dataSourceWorldcatResults)
+    .subscribe(data => {
+      this.backend.library_hub_api_response = data.library_hub_api_response;
+      console.log('Succeed!');
+      this.backend.libraryhubstatus = false;
+    })
+  }
+
   getVisionOutputStage1(frontPage) {
     this.backendAPI.getVisionOutputStage1(frontPage)
     .subscribe(data => {
@@ -126,15 +149,15 @@ export class AppComponent implements OnInit{
       this.backend.worldcat_results = data.worldcat_results;
       this.dataSource = data.record_identifier_dict;
       console.log(this.dataSource);
-      console.log(this.backend.google_vision_api_response);
-      console.log(this.backend.publisher);
-      console.log(this.backend.date);
+      // console.log(this.backend.publisher);
+      // console.log(this.backend.date);
       this.dataSourceWorldcatResults = data.worldcat_results;
       this.backend.status = false;
     })
   }
 
   searchABIM(event: any) {
+    this.backend.abimstatus = true;
     this.ABIMSearchDict.author = this.backend.author,
     this.ABIMSearchDict.title = this.backend.title,
     this.ABIMSearchDict.publisher = this.backend.publisher,
@@ -143,11 +166,10 @@ export class AppComponent implements OnInit{
     .subscribe(data => {
       // this.ABIMResults.results = data.abim_results;
       this.dataSourceABIM = data.abim_results;
-    // console.log(this.backend.author);
-    // console.log(this.backend.title);
-    // console.log(this.backend.publisher);
-    // console.log(this.backend.date);
-    console.log(this.dataSourceABIM);
+      this.backend.record_identifier_dict = data.record_identifier_dict;
+      this.dataSource = data.record_identifier_dict;
+      this.backend.abimstatus = false;
+      console.log(this.dataSourceABIM);
   })
 }
 

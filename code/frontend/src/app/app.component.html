@@ -330,11 +330,6 @@
       <button mat-raised-button (click)=onUpload()>Submit</button>
     </p>
     
-    <div *ngIf="this.backend.status == true">
-      <p>
-        <mat-spinner></mat-spinner>
-      </p>
-    </div>
     
     <!-- <div class="card-container">
       <a class="card" target="_blank" rel="noopener" href="">
@@ -348,6 +343,12 @@
 
     <div *ngIf="this.selectedFile != Null">
       <img src='assets/{{this.selectedFile.name}}' alt="Image" width="600" height="800">
+    </div>
+
+    <div *ngIf="this.backend.status == true">
+      <p>
+        <mat-spinner [diameter]="70"></mat-spinner>
+      </p>
     </div>
 
     <i class="material-icons md-96"> keyboard_arrow_down </i>
@@ -412,21 +413,43 @@
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
 
+    <div *ngIf="this.backend.abimstatus == true">
+      <p>
+        <mat-spinner [diameter]="70"></mat-spinner>
+      </p>
+    </div>
+
 
     <h2>Search ABIM:</h2>
 
     <p></p>
     <table mat-table [dataSource]="dataSourceABIM" class="mat-elevation-z8">
   
-      <ng-container matColumnDef="code">
-        <th mat-header-cell *matHeaderCellDef> ABIM Search Results </th>
-        <td mat-cell *matCellDef="let element"> {{element.document}} </td>
+      <ng-container matColumnDef="author">
+        <th mat-header-cell *matHeaderCellDef>Author</th>
+        <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="link">
+        <th mat-header-cell *matHeaderCellDef>Link</th>
+        <td mat-cell *matCellDef="let element"> {{element.link}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
       </ng-container>
     
       <tr mat-header-row *matHeaderRowDef="displayedColumnsABIM"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumnsABIM;"></tr>
     </table>
     <p></p>
+
 
     <i class="material-icons md-96"> keyboard_arrow_down </i>
     <h2>Running Open Search on WorldCat:</h2>
@@ -442,44 +465,54 @@
           <th mat-header-cell *matHeaderCellDef> Title </th>
           <td mat-cell *matCellDef="let element"> {{element.title}} </td>
         </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>  </th>   
+          <td mat-cell *matCellDef="let element"> 
+            <button mat-raised-button (click)="selectRecord(element.worldcat_results)">Select</button> 
+          </td>
+        </ng-container>
     
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+    </table>
 
-    <!-- <div>
-      <app-worldcat-list></app-worldcat-list>
-    </div> -->
 
     <i class="material-icons md-96"> keyboard_arrow_down </i>
     <h2>Showing Detailed WorldCat results:</h2>
 
-
-  <table mat-table [dataSource]="dataSourceWorldcatResults" class="mat-elevation-z8">
-      <ng-container matColumnDef="tag">
-        <th mat-header-cell *matHeaderCellDef> Tag </th>
-        <td mat-cell *matCellDef="let element"> {{element.tag}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="code">
-        <th mat-header-cell *matHeaderCellDef> Code </th>
-        <td mat-cell *matCellDef="let element"> {{element.code}} </td>
-      </ng-container>
+    <table mat-table [dataSource]="dataSourceWorldcatResults" class="mat-elevation-z8">
+        <ng-container matColumnDef="tag">
+          <th mat-header-cell *matHeaderCellDef> Tag </th>
+          <td mat-cell *matCellDef="let element"> {{element.tag}} </td>
+        </ng-container>
     
-      <ng-container matColumnDef="subfield">
-        <th mat-header-cell *matHeaderCellDef> Subfield </th>
-        <td mat-cell *matCellDef="let element"> {{element.subfield}} </td>
-      </ng-container>
-    
-      <tr mat-header-row *matHeaderRowDef="displayedColumnsWorldcatResults"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumnsWorldcatResults;"></tr>
-  </table>
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef> Code </th>
+          <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="subfield">
+          <th mat-header-cell *matHeaderCellDef> Subfield </th>
+          <td mat-cell *matCellDef="let element"> {{element.subfield}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsWorldcatResults"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsWorldcatResults;"></tr>
+    </table>
 
-    <!-- <div>
-      <app-worldcat-results></app-worldcat-results>
-    </div> -->
 
-    <i class="material-icons md-96"> keyboard_arrow_down </i>
+    <!-- <i class="material-icons md-96"> keyboard_arrow_down </i> -->
+    <button mat-icon-button aria-label="Search Library Hub" (click)="libraryHubSearch()">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+
+    <div *ngIf="this.backend.libraryhubstatus == true">
+      <p>
+        <mat-spinner [diameter]="70"></mat-spinner>
+      </p>
+    </div>
+
     <h2>Searching for duplicates in Library Hub:</h2>
 
     <p>{{backend.library_hub_api_response}}</p>

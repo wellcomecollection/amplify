@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+import worldcat_search_api
 
 
 def parse(data, from_file=False):
@@ -12,10 +13,6 @@ def parse(data, from_file=False):
     author = ''
     title = ''
     publisher = ''
-    location = ''
-    publication_date = ''
-
-    # print(data)
 
     if from_file:
         tree = ET.parse(data)
@@ -24,32 +21,23 @@ def parse(data, from_file=False):
         root = ET.fromstring(data)
 
     for child in root:
-        # print(child.tag, child.attrib)
         try:
             tag = child.get('tag')
             if tag == '245':
                 for subchild in child:
                     code = subchild.get('code')
                     if code == 'a':
-                        # print('Title: ' + subchild.text)
                         title = subchild.text
                     elif code == 'c':
-                        # print('Author: ' + subchild.text)
                         author = subchild.text
             elif tag == '264' or tag == '260':
                 for subchild in child:
                     code = subchild.get('code')
-                    if code == 'a':
-                        # print('Location: ' + subchild.text)
-                        location = subchild.text
-                    elif code == 'b':
-                        # print('Publisher: ' + subchild.text)
+                    if code == 'b':
                         publisher = subchild.text
-                    elif code == 'c':
-                        # print('Publication Date: ' + subchild.text)
-                        publication_date = subchild.text
         except:
             pass
+
     return author, title, publisher
 
 
@@ -62,8 +50,6 @@ def parse_detailed(data, from_file=False):
     '''
 
     results = []
-
-    # print(data)
 
     if from_file:
         tree = ET.parse(data)
@@ -112,8 +98,10 @@ def get_record_identifiers(data, from_file=False):
             pass
 
     for index in range(len(title_list)):
+        worldcat_search_api_read_response = worldcat_search_api.read(record_identifier_list[index])
+        worldcat_results = parse_detailed(worldcat_search_api_read_response)
         record_identifier_dict_list.append(
-            {'record_identifier': record_identifier_list[index], 'title': title_list[index]})
+            {'record_identifier': record_identifier_list[index], 'title': title_list[index], 'worldcat_results': worldcat_results})
 
-    return record_identifier_dict_list, record_identifier_list
+    return record_identifier_dict_list
 

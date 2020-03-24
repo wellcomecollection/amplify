@@ -36,6 +36,11 @@ export class BackendApiService {
     .pipe(timeout(86400000));
   }
 
+  libraryHubSearch(data: any): Observable<any> {
+    return this.http.post<any>(`${API_URL}/library_hub_search`, data)
+    .pipe(timeout(86400000));
+  }
+
   getVisionOutputStage2(backendPost: any): Observable<any> {
     return this.http.post<any>(`${API_URL}/visionStage2`, backendPost, httpOptions)
     .pipe(timeout(86400000));

@@ -9,3 +9,11 @@
   .example-full-width {
     width: 100%;
   }
+
+  .mat-row {
+    height: auto;
+  }
+  
+  .mat-cell {
+    padding: 8px 8px 8px 0;
+  }

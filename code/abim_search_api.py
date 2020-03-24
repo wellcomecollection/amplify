@@ -92,4 +92,15 @@ def parse_response(response):
         document = document.replace("""</em></a>\n\n\n""", '')
         results.append({'document': document})
 
-    return results
+    # results = [{'document': '1. Reddy, A. Madhusudana and&#13;\nB. Ravi Prasad Rao\n  \n\n(2011)\n\n<a href="http://indianmedicine.eldoc.ub.rug.nl/62735/"><em>Medicinal plant wealth of Palakonda hill ranges, Kadapa district, Andhra Pradesh, India.    '},
+    #            {'document': '2. Chakre, Onkar J.\n  \n\n(2010)\n\n<a href="http://indianmedicine.eldoc.ub.rug.nl/55569/"><em>The Wealth of India -- a CSIR\'s encyclopaedia of information resource on economic plants, animals and minerals.    '}]
+
+    splitted_results = []
+
+    for i in results:
+        splitted = re.split("""\n\n<a href="|\n\n|"><em>""", i['document'])
+        splitted_results.append({'author': splitted[0], 'date': splitted[1], 'link': splitted[2], 'title': splitted[3]})
+
+    print(splitted_results)
+
+    return splitted_results
