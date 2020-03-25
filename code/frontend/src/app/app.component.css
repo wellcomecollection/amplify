@@ -17,3 +17,8 @@
   .mat-cell {
     padding: 8px 8px 8px 0;
   }
+
+
+.spinner ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #1565C0;
+  }
