@@ -1,9 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject} from '@angular/core';
 import {BackendApiService} from './backend-api.service';
 import { API_URL } from 'src/environments/environment';
 import {WorldcatListComponent} from './worldcat-list/worldcat-list.component';
 import {interval} from 'rxjs';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
+
+export interface DialogData {
+  tag: string;
+  code: string;
+  subfield: string;
+}
+
+@Component({
+  selector: 'app-dialog-component',
+  templateUrl: 'app-dialog-component.html',
+})
+
+export class DialogOverviewExampleDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
 
 export interface WorldcatList {
   record_identifier: string;
@@ -43,19 +66,24 @@ export class AppComponent implements OnInit{
     'record_identifier', 
     'title',
     'action'];
+
   displayedColumnsWorldcatResults: string[] = [
     'tag', 
     'code', 
-    'subfield'];
+    'subfield', 
+    'edit'];
+
   displayedColumnsABIM: string[] = [
     'author', 
     'date',
-    'link',
+    // 'link',
     'title',
   ];
 
   dataSource = WORLDCAT_LIST;
+
   dataSourceWorldcatResults = WORLDCAT_RESULTS;
+  
   dataSourceABIM = ABIM_LIST;
 
   title = 'frontend';
@@ -97,15 +125,37 @@ export class AppComponent implements OnInit{
   }
 
   constructor(
-    private backendAPI: BackendApiService, 
+    private backendAPI: BackendApiService, public dialog: MatDialog,
   ) {}
 
   selectedFile: File = null;
 
+
+  editRecord(tag: string, code: string, subfield: string): void {
+    
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialogComponent, {
+      width: '600px',
+      data: {tag: tag, code: code, subfield: subfield},
+    });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        console.log(result.subfield);
+        console.log(this.dataSourceWorldcatResults);
+        this.dataSourceWorldcatResults.forEach( (element) => {
+          if (element.tag === tag && element.code === code && element.subfield === subfield) {
+            element.subfield = result.subfield;
+            }
+          });
+      }
+    });
+  }
+
+
   onFileSelected(event) {
-    console.log(event);
     this.selectedFile = <File>event.target.files[0];
   }
+
 
   onUpload() {
     this.backend.status = true;
@@ -118,20 +168,21 @@ export class AppComponent implements OnInit{
     this.getVisionOutputStage1(frontPage);
   }
 
+
   selectRecord(worldcat_results) {
-    console.log(worldcat_results)
     this.dataSourceWorldcatResults = worldcat_results;
   }
+
 
   libraryHubSearch() {
     this.backend.libraryhubstatus = true;
     this.backendAPI.libraryHubSearch(this.dataSourceWorldcatResults)
     .subscribe(data => {
       this.backend.library_hub_api_response = data.library_hub_api_response;
-      console.log('Succeed!');
       this.backend.libraryhubstatus = false;
     })
   }
+
 
   getVisionOutputStage1(frontPage) {
     this.backendAPI.getVisionOutputStage1(frontPage)
@@ -150,13 +201,11 @@ export class AppComponent implements OnInit{
       this.backend.library_hub_api_response = data.library_hub_api_response;
       this.backend.worldcat_results = data.worldcat_results;
       this.dataSource = data.record_identifier_dict;
-      console.log(this.dataSource);
-      // console.log(this.backend.publisher);
-      // console.log(this.backend.date);
       this.dataSourceWorldcatResults = data.worldcat_results;
       this.backend.status = false;
     })
   }
+
 
   searchABIM(event: any) {
     this.backend.abimstatus = true;
@@ -166,14 +215,13 @@ export class AppComponent implements OnInit{
     this.ABIMSearchDict.date = this.backend.date,
     this.backendAPI.searchABIM(this.ABIMSearchDict)
     .subscribe(data => {
-      // this.ABIMResults.results = data.abim_results;
       this.dataSourceABIM = data.abim_results;
       this.backend.record_identifier_dict = data.record_identifier_dict;
       this.dataSource = data.record_identifier_dict;
       this.backend.abimstatus = false;
-      console.log(this.dataSourceABIM);
   })
 }
+
 
   getVisionOutputStage2() {
     this.backend.stage2status = true;
@@ -193,6 +241,7 @@ export class AppComponent implements OnInit{
     })
   }
 
+
   getVisionOutputStage3() {
     this.backend.stage3status = true;
     this.backendAPI.getVisionOutputStage3(this.backend)
@@ -210,44 +259,46 @@ export class AppComponent implements OnInit{
   }
 
   postVisionOutput() {
-    console.log('posting...')
-    // this.backendPost.image_input = image_input
     this.backendAPI.postVisionOutput(this.backendPost)
-    .subscribe(
-    //   data => {
-    // }
-    )
+    .subscribe()
   }
+
 
   updateGoogleVisionAPIResponse(event: any) {
     this.backend.google_vision_api_response = event.target.value;
     console.log(this.backend.google_vision_api_response);
   }
 
+
   updateTranslatedText(event: any) {
     this.backend.translatedText = event.target.value;
     console.log(this.backend.translatedText);
   }
+
 
   updateAuthor(event: any) {
     this.backend.author = event.target.value;
     console.log(this.backend.author);
   }
 
+
   updateTitle(event: any) {
     this.backend.title = event.target.value;
     console.log(this.backend.title);
   }
+
 
   updateDate(event: any) {
     this.backend.date = event.target.value;
     console.log(this.backend.date);
   }
   
+
   updatePublisher(event: any) {
     this.backend.publisher = event.target.value;
     console.log(this.backend.publisher);
   }
+
 
   updatePublisherPlace(event: any) {
     this.backend.publisher_place = event.target.value;
@@ -255,6 +306,5 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-    // this.getVisionOutputStage1();
   }
 }

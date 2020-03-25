@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent, DialogOverviewExampleDialogComponent } from './app.component';
+import {MatDialogModule} from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { BackendApiService } from './backend-api.service';
 
@@ -20,9 +21,11 @@ import { WorldcatResultsComponent } from './worldcat-results/worldcat-results.co
 @NgModule({
   declarations: [
     AppComponent,
+    DialogOverviewExampleDialogComponent,
     WorldcatListComponent,
     WorldcatResultsComponent
   ],
+  entryComponents: [AppComponent, DialogOverviewExampleDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,7 +35,7 @@ import { WorldcatResultsComponent } from './worldcat-results/worldcat-results.co
     MatInputModule,
     MatTableModule,
     MatProgressSpinnerModule,
-    // DemoMaterialModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     MatSliderModule,
     MatButtonModule,

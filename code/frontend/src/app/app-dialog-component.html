@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+  <p> Update record:</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.subfield" placeholder="Subfield">
+  </mat-form-field>
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Add</button>
+</div>
