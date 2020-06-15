@@ -1,11 +1,7 @@
-import config
 import os
 from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
-
-
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = config.GOOGLE_APPLICATION_CREDENTIALS_PATH
 
 
 def analyze_entities(text):

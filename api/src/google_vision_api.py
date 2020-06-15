@@ -1,9 +1,6 @@
 import io
 import os
-import config
 from google.cloud import vision
-
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = config.GOOGLE_APPLICATION_CREDENTIALS_PATH
 
 
 def detect_text(image_file, from_path=True):
@@ -42,7 +39,7 @@ def print_bounding_poly_vertices(texts):
         print('\n"{}"'.format(text.description))
 
         vertices = (['({},{})'.format(vertex.x, vertex.y)
-                    for vertex in text.bounding_poly.vertices])
+                     for vertex in text.bounding_poly.vertices])
 
         print('bounds: {}'.format(','.join(vertices)))
 
