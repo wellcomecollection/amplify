@@ -1,7 +1,6 @@
 import os
-from google.cloud import language
-from google.cloud.language import enums
-from google.cloud.language import types
+
+from google.cloud.language import LanguageServiceClient, enums, types
 
 
 def analyze_entities(text):
@@ -14,12 +13,14 @@ def analyze_entities(text):
     :return: JSON
     '''
 
-    client = language.LanguageServiceClient()
+    client = LanguageServiceClient()
 
-    document = types.Document(content=text, type=enums.Document.Type.PLAIN_TEXT)
+    document = types.Document(
+        content=text, type=enums.Document.Type.PLAIN_TEXT)
     encoding_type = enums.EncodingType.UTF8
 
-    entities = client.analyze_entities(document=document, encoding_type=encoding_type)
+    entities = client.analyze_entities(
+        document=document, encoding_type=encoding_type)
 
     return entities
 

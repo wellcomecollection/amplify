@@ -1,6 +1,6 @@
 import io
 import os
-from google.cloud import vision
+from google.cloud.vision import types, ImageAnnotatorClient
 
 
 def detect_text(image_file, from_path=True):
@@ -9,7 +9,7 @@ def detect_text(image_file, from_path=True):
     :param path: string
     :return: string, string
     '''
-    client = vision.ImageAnnotatorClient()
+    client = ImageAnnotatorClient()
 
     if from_path:
         with io.open(image_file, 'rb') as image_file:
@@ -17,7 +17,7 @@ def detect_text(image_file, from_path=True):
     else:
         content = image_file.read()
 
-    image = vision.types.Image(content=content)
+    image = types.Image(content=content)
 
     response = client.text_detection(image=image)
     texts = response.text_annotations
