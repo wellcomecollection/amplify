@@ -22,6 +22,8 @@ Amplify uses Google's machine learning APIs for text recognition, translation, a
 
 You'll need to obtain a set of credentials from google to use these APIs. See instructions [here](https://cloud.google.com/vision/docs/setup). You'll need to authorise that set of credentials to use the Vision and Natural Language APIs.
 
+In the `.env` file, the `GOOGLE_APPLICATION_CREDENTIALS` variable should be the full path to the file on your local machine.
+
 ### Worldcat
 
 The worldcat API requires a key. Obtain this by... TODO

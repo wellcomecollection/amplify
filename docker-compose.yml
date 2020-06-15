@@ -5,12 +5,15 @@ services:
     build: api
     volumes:
       - ./data:/data
+      - ${GOOGLE_APPLICATION_CREDENTIALS}:/google_application_credentials.json
     ports:
       - 4204:4204
     environment:
-      - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
+      - GOOGLE_APPLICATION_CREDENTIALS=/google_application_credentials.json
       - WORLDCAT_WSKEY=${WORLDCAT_WSKEY}
   frontend:
     build: frontend
     ports:
       - 90:80
+
+
