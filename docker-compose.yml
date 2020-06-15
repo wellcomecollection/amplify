@@ -5,6 +5,8 @@ services:
     build: api
     volumes:
       - ./data:/data
+    ports:
+      - 4204:4204
     environment:
       - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
       - WORLDCAT_WSKEY=${WORLDCAT_WSKEY}
@@ -12,5 +14,5 @@ services:
       - flask run --host=0.0.0.0
   frontend:
     build: frontend
-    command:
     ports:
+      - 90:80
