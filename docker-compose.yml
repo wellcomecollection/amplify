@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  api:
+    build: api
+    volumes:
+      - ./data:/data
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
+      - WORLDCAT_WSKEY=${WORLDCAT_WSKEY}
+    command:
+      - flask run --host=0.0.0.0
+  frontend:
+    build: frontend
+    command:
+    ports:
