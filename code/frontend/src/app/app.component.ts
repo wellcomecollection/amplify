@@ -124,6 +124,10 @@ export class AppComponent implements OnInit{
     results: []
   }
 
+  tag: string;
+  code: string;
+  subfield: string;
+
   constructor(
     private backendAPI: BackendApiService, public dialog: MatDialog,
   ) {}
@@ -150,6 +154,46 @@ export class AppComponent implements OnInit{
       }
     });
   }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialogComponent, {
+      width: '600px',
+      data: {tag: this.tag, code: this.code, subfield: this.subfield}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if (result !== undefined) {
+        this.tag = result.tag;
+        this.code = result.code;
+        this.subfield = result.subfield;
+        this.addTest(this.tag, this.code, this.subfield);
+      }
+
+    });
+  }
+
+  addTest(tag: string, code: string, subfield: string) {
+    console.log(this.dataSourceWorldcatResults);
+    if (tag) {
+      this.dataSourceWorldcatResults = this.dataSourceWorldcatResults.concat([{
+        tag: tag,
+        code: code,
+        subfield: subfield
+      }]);
+    console.log(this.dataSourceWorldcatResults);
+    }
+  }
+
+
+  deleteRecord(tag: string, code: string, subfield: string): void {
+    console.log(this.dataSourceWorldcatResults);
+    this.dataSourceWorldcatResults = this.dataSourceWorldcatResults.filter((value) => {
+      return ((value.tag !== tag) || (value.code !== code) || (value.subfield !== subfield))
+    });
+    console.log(this.dataSourceWorldcatResults);
+  }
+
 
 
   onFileSelected(event) {

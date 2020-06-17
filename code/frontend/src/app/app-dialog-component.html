@@ -1,6 +1,12 @@
 <div mat-dialog-content>
   <p> Update record:</p>
   <mat-form-field>
+    <input matInput [(ngModel)]="data.tag" placeholder="Tag">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.code" placeholder="Code">
+  </mat-form-field>
+  <mat-form-field>
     <input matInput [(ngModel)]="data.subfield" placeholder="Subfield">
   </mat-form-field>
   
