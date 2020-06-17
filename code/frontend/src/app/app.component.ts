@@ -47,11 +47,18 @@ export interface ABIM {
   title: string;
 }
 
+export interface ABIMDetailed {
+  field: string;
+  detail: string;
+}
+
 const WORLDCAT_LIST: WorldcatList[] = [];
 
 const WORLDCAT_RESULTS: WorldcatResults[] = [];
 
 const ABIM_LIST: ABIM[] = [];
+
+const ABIM_DETAILED_LIST: ABIMDetailed[] = [];
 
 
 @Component({
@@ -78,6 +85,12 @@ export class AppComponent implements OnInit{
     'date',
     // 'link',
     'title',
+    'edit'
+  ];
+
+  displayedColumnsABIMDetailed: string[] = [
+    'field', 
+    'detail',
   ];
 
   dataSource = WORLDCAT_LIST;
@@ -85,6 +98,8 @@ export class AppComponent implements OnInit{
   dataSourceWorldcatResults = WORLDCAT_RESULTS;
   
   dataSourceABIM = ABIM_LIST;
+
+  dataSourceABIMDetailed = ABIM_DETAILED_LIST;
 
   title = 'frontend';
 
@@ -118,6 +133,11 @@ export class AppComponent implements OnInit{
     title: null,
     publisher: null,
     date: null
+  }
+
+  ABIMSearchDictDetailed = {
+    field: null,
+    detail: null
   }
 
   ABIMResults = {
@@ -265,6 +285,17 @@ export class AppComponent implements OnInit{
       this.backend.abimstatus = false;
   })
 }
+
+  selectABIMRecord(element) {
+    console.log(this.dataSourceABIM);
+    console.log(element);
+    console.log(element.link);
+    this.backendAPI.searchABIMDetailed(element)
+      .subscribe(data => {
+        this.dataSourceABIMDetailed = data.abim_results_detailed;
+  })
+  console.log(this.dataSourceABIMDetailed);
+  }
 
 
   getVisionOutputStage2() {

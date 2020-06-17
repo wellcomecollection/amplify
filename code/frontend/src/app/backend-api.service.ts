@@ -36,6 +36,11 @@ export class BackendApiService {
     .pipe(timeout(86400000));
   }
 
+  searchABIMDetailed(ABIMSearchDictDetailed: any): Observable<any> {
+    return this.http.post<any>(`${API_URL}/abim_search_detailed`, ABIMSearchDictDetailed)
+    .pipe(timeout(86400000));
+  }
+
   libraryHubSearch(data: any): Observable<any> {
     return this.http.post<any>(`${API_URL}/library_hub_search`, data)
     .pipe(timeout(86400000));
