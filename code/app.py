@@ -116,6 +116,16 @@ def abim_search():
                     'record_identifier_dict': record_identifier_dict,})
 
 
+@app.route('/abim_search_detailed', methods=["POST"])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+def abim_search_detailed():
+    link = request.get_json()['link']
+
+    results = abim_search_api.pull_details(link=link)
+
+    return jsonify({'abim_results_detailed': results})
+
+
 @app.route('/visionStage2', methods=["POST"])
 @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def get_visionStage2():

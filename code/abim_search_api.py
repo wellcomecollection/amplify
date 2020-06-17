@@ -104,3 +104,45 @@ def parse_response(response):
     print(splitted_results)
 
     return splitted_results
+
+
+def pull_details(link):
+    '''Pull MARC details from ABIM links.
+
+    :return: list
+    '''
+    BASE_URL = link
+
+
+    response = requests.get(BASE_URL).text
+
+    results = []
+
+    start_positions = []
+    end_positions = []
+
+    for match in finditer("""<tr>
+          <th align="right">""", response):
+        # print(match.span(), match.group())
+        start_positions.append(match.span()[1])
+
+    for match in finditer("""</td>
+        </tr>""", response):
+        # print(match.span(), match.group())
+        end_positions.append(match.span()[0] + 1)
+
+    for i in range(len(start_positions)):
+        document = str(response[start_positions[i]:end_positions[i + 1] - 1])
+        document = document.replace("""</th>\n          <td valign="top">""", '')
+        # document = document.replace("""</em></a>\n\n\n""", '')
+        results.append({'document': document})
+
+    # results = [{'document': 'Author(s)Wealth of India'}, {'document': 'Author(s) order (without accents)Wealth of India'}, {'document': 'Title order (without accents)The wealth of India -- A dictionary of Indian raw materials and industrial products -- Second Supplement Series (Raw Materials) volume 1: A--F volume 2: G--Ph'}, {'document': 'Type of publicationBook (monograph)'}, {'document': 'LanguageEnglish'}, {'document': 'Description of the publicationvol. 1: XVIII, 382, 40 (indexes) p.; vol.2: XVIII, 282, VII (Appendix), 41 (indexes) p.'}, {'document': 'Locationpresent'}, {'document': 'Checkedyes'}, {'document': 'PublisherNational Institute of Science Communication and Information Resources -- Council of Scientific and Industrial Research, New Delhi'}]
+
+    splitted_results = []
+
+    for i in results:
+        splitted = re.split(""":""", i['document'])
+        splitted_results.append({'field': splitted[0], 'detail': splitted[1]})
+
+    return splitted_results
