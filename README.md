@@ -73,14 +73,29 @@ If you plan to use the Vision API, you must install and initialize the Cloud SDK
 
 [Install and initialize the Cloud SDK](https://cloud.google.com/sdk/docs).
 
-## Setting up the project:
+## Setting up the Backend:
 Create a new conda environment with the following command:
 
-`conda env create -f environment.yml`
+```
+conda env create -f environment.yml
+```
 
 Activate environment:
 
-`source activate amplify`
+```
+source activate amplify
+```
+
+Navigate to the `code` folder and run `python app.py` to start the backend.
+
+## Frontend
+
+In order to run the frontend you will need to setup [Angular](https://angular.io/guide/setup-local).
+
+### Development server
+
+After setting up Angular navigate to `code/frontend` and run `ng serve` for a dev server. Navigate to `http://localhost:4200/` where your frontend will be served.
+
 
 ## Library APIs
 
