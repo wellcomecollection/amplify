@@ -1,9 +1,6 @@
-import config
 import os
 import six
 from google.cloud import translate_v2 as translate
-
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = config.GOOGLE_APPLICATION_CREDENTIALS_PATH
 
 def translate_text(text):
     '''Translate text to english.

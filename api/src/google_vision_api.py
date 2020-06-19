@@ -1,9 +1,6 @@
 import io
 import os
-import config
-from google.cloud import vision
-
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = config.GOOGLE_APPLICATION_CREDENTIALS_PATH
+from google.cloud.vision import types, ImageAnnotatorClient
 
 
 def detect_text(image_file, from_path=True):
@@ -12,7 +9,7 @@ def detect_text(image_file, from_path=True):
     :param path: string
     :return: string, string
     '''
-    client = vision.ImageAnnotatorClient()
+    client = ImageAnnotatorClient()
 
     if from_path:
         with io.open(image_file, 'rb') as image_file:
@@ -20,7 +17,7 @@ def detect_text(image_file, from_path=True):
     else:
         content = image_file.read()
 
-    image = vision.types.Image(content=content)
+    image = types.Image(content=content)
 
     response = client.text_detection(image=image)
     texts = response.text_annotations
@@ -42,7 +39,7 @@ def print_bounding_poly_vertices(texts):
         print('\n"{}"'.format(text.description))
 
         vertices = (['({},{})'.format(vertex.x, vertex.y)
-                    for vertex in text.bounding_poly.vertices])
+                     for vertex in text.bounding_poly.vertices])
 
         print('bounds: {}'.format(','.join(vertices)))
 

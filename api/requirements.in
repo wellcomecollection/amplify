@@ -1,0 +1,4 @@
+google-cloud-vision==0.41.0
+requests==2.22.0
+six==1.13.0
+flask==1.1.2
