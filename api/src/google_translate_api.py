@@ -2,6 +2,7 @@ import os
 import six
 from google.cloud import translate_v2 as translate
 
+
 def translate_text(text):
     '''Translate text to english.
 

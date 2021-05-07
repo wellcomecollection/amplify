@@ -1,6 +1,5 @@
 import os
-
-from google.cloud.language import LanguageServiceClient, enums, types
+from google.cloud import language
 
 
 def analyze_entities(text):
@@ -13,11 +12,11 @@ def analyze_entities(text):
     :return: JSON
     '''
 
-    client = LanguageServiceClient()
+    client = language.LanguageServiceClient()
 
-    document = types.Document(
-        content=text, type=enums.Document.Type.PLAIN_TEXT)
-    encoding_type = enums.EncodingType.UTF8
+    document = language.Document(
+        content=text, type=language.Document.Type.PLAIN_TEXT)
+    encoding_type = language.EncodingType.UTF8
 
     entities = client.analyze_entities(
         document=document, encoding_type=encoding_type)
@@ -47,7 +46,7 @@ def retrieve_entities(response):
     author, title, date, publisher, publisher_place = [], [], [], [], []
     meta_data = {}
     for entity in response.entities:
-        entity_type = enums.Entity.Type(entity.type).name
+        entity_type = language.Entity.Type(entity.type).name
         if entity_type == 'PERSON':
             author.append(entity.name)
             meta_data[entity.name] = get_meta_data(entity)
