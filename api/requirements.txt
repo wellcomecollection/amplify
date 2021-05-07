@@ -44,7 +44,7 @@ idna==2.8
     # via requests
 itsdangerous==1.1.0
     # via flask
-jinja2==2.11.2
+jinja2==2.11.3
     # via flask
 libcst==0.3.18
     # via google-cloud-language
