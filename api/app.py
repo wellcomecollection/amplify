@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 
-from src import (abim_search_api, config, google_natural_language_api,
+from src import (abim_search_api, google_natural_language_api,
                  google_translate_api, google_vision_api, library_hub_api,
                  parse_message, worldcat_search_api)
 
@@ -125,7 +125,7 @@ def abim_search():
 
 
 @app.route('/abim_search_detailed', methods=["POST"])
-@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+@cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
 def abim_search_detailed():
     link = request.get_json()['link']
 

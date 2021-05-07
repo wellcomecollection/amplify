@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-import worldcat_search_api
+from .worldcat_search_api import read
 
 
 def parse(data, from_file=False):
@@ -63,7 +63,8 @@ def parse_detailed(data, from_file=False):
             for subchild in child:
                 code = subchild.get('code')
                 subfield = subchild.text
-                results.append({'tag': tag, 'code': code, 'subfield': subfield})
+                results.append(
+                    {'tag': tag, 'code': code, 'subfield': subfield})
         except:
             pass
     return results
@@ -98,10 +99,9 @@ def get_record_identifiers(data, from_file=False):
             pass
 
     for index in range(len(title_list)):
-        worldcat_search_api_read_response = worldcat_search_api.read(record_identifier_list[index])
+        worldcat_search_api_read_response = read(record_identifier_list[index])
         worldcat_results = parse_detailed(worldcat_search_api_read_response)
         record_identifier_dict_list.append(
             {'record_identifier': record_identifier_list[index], 'title': title_list[index], 'worldcat_results': worldcat_results})
 
     return record_identifier_dict_list
-

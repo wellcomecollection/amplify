@@ -1,7 +1,8 @@
-import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of, throwError } from "rxjs";
-import { timeout, catchError } from "rxjs/operators";
+import { catchError, timeout } from "rxjs/operators";
+
+import { Injectable } from "@angular/core";
 import { pythonPost } from "./backend.model";
 
 const httpOptions = {
@@ -33,6 +34,12 @@ export class BackendApiService {
   searchABIM(ABIMSearchDict: any): Observable<any> {
     return this.http
       .post<any>(`${API_URL}/abim_search`, ABIMSearchDict)
+      .pipe(timeout(86400000));
+  }
+
+  searchABIMDetailed(ABIMSearchDict: any): Observable<any> {
+    return this.http
+      .post<any>(`${API_URL}/abim_search_detailed`, ABIMSearchDict)
       .pipe(timeout(86400000));
   }
 

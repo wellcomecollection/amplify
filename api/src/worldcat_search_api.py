@@ -1,4 +1,4 @@
-import config
+import os
 import requests
 
 
@@ -10,10 +10,12 @@ def open_search(text):
     '''
     BASE_URL = 'http://www.worldcat.org/webservices/catalog/search/worldcat/opensearch'
 
-    SEARCH = '?q=' + text + '&' \
-             'wskey=' + config.WORLDCAT_WSKEY
+    SEARCH = {
+        "q": text,
+        'wskey': os.environ.get('WORLDCAT_WSKEY')
+    }
 
-    response = requests.post(BASE_URL + SEARCH)
+    response = requests.post(BASE_URL, params=SEARCH)
     return response.text
 
 
@@ -23,10 +25,9 @@ def read(record_identifier):
     :param record_identifier: string
     :return: string, XML
     '''
-    BASE_URL = 'http://www.worldcat.org/webservices/catalog/content/'
+    BASE_URL = 'http://www.worldcat.org/webservices/catalog/content/' + record_identifier
 
-    SEARCH = record_identifier + '?' \
-             'wskey=' + config.WORLDCAT_WSKEY
+    SEARCH = {'wskey': os.environ.get('WORLDCAT_WSKEY')}
 
-    response = requests.post(BASE_URL + SEARCH)
+    response = requests.post(BASE_URL, params=SEARCH)
     return response.text
